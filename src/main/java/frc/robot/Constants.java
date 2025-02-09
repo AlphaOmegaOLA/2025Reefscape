@@ -18,7 +18,8 @@ import edu.wpi.first.math.util.Units;
 import frc.lib.util.swerveUtil.COTSNeoSwerveConstants;
 import frc.lib.util.swerveUtil.SwerveModuleConstants;
 import frc.lib.util.swerveUtil.COTSNeoSwerveConstants.driveGearRatios;
-public final class Constants {
+public final class Constants 
+{
     public static final double stickDeadband = 0.1;
 
     public static final class Swerve {
@@ -148,6 +149,53 @@ public final class Constants {
             public static final Rotation2d angleOffset = Rotation2d.fromRotations(-0.389404);
             public static final SwerveModuleConstants constants = 
                 new SwerveModuleConstants(driveMotorID, angleMotorID, canCoderID, angleOffset);
+        }
+    }
+
+    public final class ElevatorConstants 
+    {
+        // SPEEDS FOR ALL MOTORS
+        // May be necessary to override these down
+        // below for specific motors.
+        public static final double FULL = 1.0;
+        public static final double HALF = 0.5;
+        public static final double QUARTER = 0.25;
+    
+        /* ELEVATOR SUBSYSTEM */
+        public static final class Elevator 
+        {
+            // ARM MOTOR IDS AND SPEEDS
+            public static final int ELEVATOR_MOTOR_ID = 8;
+            public static final boolean ELEVATOR_MOTOR_INVERTED = false;
+            public static final  IdleMode ELEVATOR_NEUTRAL_MODE = IdleMode.kBrake;
+            public static final double FULL_SPEED = FULL;
+            public static final double HALF_SPEED = HALF;
+            public static final double QUARTER_SPEED = QUARTER;
+            // Uses the through bore encoder
+            public static final int ELEVATOR_ENCODER_ID = 0;
+        
+            // ELEVATOR HEIGHTS
+            // Need to determine the starting offset angle of the
+            // Rev Through Bore Encoder and set it here:
+            public static final Rotation2d ELEVATOR_ENCODER_OFFSET = Rotation2d.fromDegrees(350+97);
+            public static final double ELEVATOR_FLOOR_ANGLE = 91;
+            public static final double ELEVATOR_SOURCE_ANGLE = 30.1;
+            public static final double ELEVATOR_AMP_ANGLE = 1.3;
+            public static final double ARM_LONGSHOT_ANGLE = 65.0;
+            public static final double ARM_SPEAKER_ANGLE = 80.1;
+            public static final double ELEVATOR_CLIMB_ANGLE = 70.0;
+    
+            // ELEVATOR PID - we will tune these values!!
+            public static final int ELEVATOR_CURRENT_LIMIT = 50;
+            public static final double ELEVATOR_UPDATE_OUTPUT = .02;
+            public static final double ELEVATOR_MAX_VELOCITY = 1.75;
+            public static final double ELEVATOR_MAX_ACCELERATION = .75;
+            public static final double ELEVATOR_P = .2;
+            public static final double ELEVATOR_I = 0.0;
+            public static final double ELEVATOR_D = 0.7;
+            public static final double ELEVATOR_S = 1.1;
+            public static final double ELEVATOR_G = 1.2;
+            public static final double ELEVATOR_V = 1.3;
         }
     }
 

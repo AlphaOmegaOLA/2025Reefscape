@@ -46,7 +46,7 @@ public class SwerveMod{
 
         /* Angle Motor Config */
         mAngleMotor = new SparkMax(moduleConstants.angleMotorID, MotorType.kBrushless);
-        mAngleMotor.configure(hardwareConfigs.swerveAngleSparkConfig, ResetMode.kNoResetSafeParameters, PersistMode.kPersistParameters);
+        mAngleMotor.configure(hardwareConfigs.elevatorSparkConfig, ResetMode.kNoResetSafeParameters, PersistMode.kPersistParameters);
 
         /* Drive Motor Config */
         mDriveMotor = new SparkMax(moduleConstants.driveMotorID,  MotorType.kBrushless);
@@ -54,7 +54,6 @@ public class SwerveMod{
         configEncoders();
 
     }
-
 
     private void configEncoders()
     {     
