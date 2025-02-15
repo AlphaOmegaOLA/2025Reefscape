@@ -17,9 +17,9 @@ public final class HardwareConfigs
         swerveCANcoderConfig.MagnetSensor.SensorDirection = Constants.Swerve.cancoderInvert;
 
         //Swerve angle motor config
-        //Motor inverts and nuetral modes
+        //Motor inverts and Neutral modes
         elevatorSparkConfig.inverted(Constants.Swerve.angleMotorInvert);
-        elevatorSparkConfig.idleMode(Constants.Swerve.angleNuetralMode);
+        elevatorSparkConfig.idleMode(Constants.Swerve.angleNeutralMode);
 
         //Gear ratio and wrapping config
         elevatorSparkConfig.encoder.positionConversionFactor(360/Constants.Swerve.angleGearRatio);
@@ -35,9 +35,9 @@ public final class HardwareConfigs
         swerveDriveSparkConfig.closedLoop.d(Constants.Swerve.driveKD);
 
         //Swerve drive motor config
-        //Motor inverts and nuetral modes
+        //Motor inverts and Neutral modes
         swerveDriveSparkConfig.inverted(Constants.Swerve.driveMotorInvert);
-        swerveDriveSparkConfig.idleMode(Constants.Swerve.driveNuetralMode);
+        swerveDriveSparkConfig.idleMode(Constants.Swerve.driveNeutralMode);
 
         //Gear ratio and wrapping config
         swerveDriveSparkConfig.encoder.positionConversionFactor(Constants.Swerve.driveGearRatio);
@@ -75,9 +75,9 @@ public final class HardwareConfigs
         swerveDriveSparkConfig.closedLoop.d(Constants.Swerve.driveKD);
 
         //Swerve drive motor config
-        //Motor inverts and nuetral modes
+        //Motor inverts and Neutral modes
         swerveDriveSparkConfig.inverted(Constants.Swerve.driveMotorInvert);
-        swerveDriveSparkConfig.idleMode(Constants.Swerve.driveNuetralMode);
+        swerveDriveSparkConfig.idleMode(Constants.Swerve.driveNeutralMode);
 
         //Gear ratio and wrapping config
         swerveDriveSparkConfig.encoder.positionConversionFactor(Constants.Swerve.driveGearRatio);
