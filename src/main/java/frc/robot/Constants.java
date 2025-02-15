@@ -178,6 +178,7 @@ public final class Constants
             // Need to determine the starting offset angle of the
             // Rev Through Bore Encoder and set it here:
             public static final Rotation2d ELEVATOR_ENCODER_OFFSET = Rotation2d.fromDegrees(350+97);
+            public static final double ELEVATOR_GEAR_RATIO = 60.0;
             public static final double ELEVATOR_FLOOR_ANGLE = 91;
             public static final double ELEVATOR_SOURCE_ANGLE = 30.1;
             public static final double ELEVATOR_AMP_ANGLE = 1.3;
