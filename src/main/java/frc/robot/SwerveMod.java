@@ -21,7 +21,8 @@ import com.revrobotics.spark.SparkMax;
 /**
  * a Swerve Modules using REV Robotics motor controllers and CTRE CANcoder absolute encoders.
  */
-public class SwerveMod{
+public class SwerveMod
+{
     private HardwareConfigs hardwareConfigs;
 
     public int moduleNumber;

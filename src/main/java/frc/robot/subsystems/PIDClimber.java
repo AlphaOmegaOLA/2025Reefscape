@@ -2,7 +2,7 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-package frc.robot.subsystems.Elevator;
+package frc.robot.subsystems.PIDClimber;
 
 import com.revrobotics.spark.SparkLowLevel.MotorType;
 import com.revrobotics.spark.SparkMax;
@@ -11,19 +11,15 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.ElevatorConstants;
 
-public class PIDElevator extends SubsystemBase 
+public class PIDClimber extends SubsystemBase 
 {
-  /** Creates a new PIDE;levator. */
-  private SparkMax elevatorMotor;
-  private RevThroughBoreEncoder elevatorEncoder;
+  /** Creates a new PIDClimber */
+  private SparkMax climberMotor;
   public double setpoint = 0;
 
-  public PIDElevator() 
+  public PIDClimber() 
   {
-        elevatorMotor = new SparkMax(ElevatorConstants.Elevator.ELEVATOR_MOTOR_ID, MotorType.kBrushless);
-        // Need to set brake mode and inverted:true in new configuration scheme
-        elevatorEncoder = new RevThroughBoreEncoder(ElevatorConstants.Elevator.ELEVATOR_ENCODER_ID);
-        elevatorEncoder.setOffset(ElevatorConstants.Elevator.ELEVATOR_ENCODER_OFFSET);
+        climberMotor = new SparkMax(ElevatorConstants.Elevator.CLIMBER_MOTOR_ID, MotorType.kBrushless);
   }
 
   public void setAngle(double angle)
@@ -33,7 +29,7 @@ public class PIDElevator extends SubsystemBase
 
  public void runElevator(double input)
  {
-  elevatorMotor.set(input);
+  climberMotor.set(input);
  }
 
  public double getAngle() 

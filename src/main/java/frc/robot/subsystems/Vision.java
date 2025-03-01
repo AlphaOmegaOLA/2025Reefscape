@@ -9,7 +9,8 @@ import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-public class Vision extends SubsystemBase {
+public class Vision extends SubsystemBase 
+{
     private PoseEstimator s_PoseEstimator;
     public Limelight leftLL;
     public Limelight rightLL;

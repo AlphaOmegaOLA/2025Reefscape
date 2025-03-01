@@ -14,7 +14,8 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.math.util.Units;
 
 
-public class SwerveCommand extends Command {    
+public class SwerveCommand extends Command 
+{    
     private Swerve s_Swerve;    
     private DoubleSupplier translationSup;
     private DoubleSupplier strafeSup;
@@ -43,7 +44,8 @@ public class SwerveCommand extends Command {
     }
 
     @Override
-    public void execute() {
+    public void execute() 
+    {
         /* Get Values, Deadband, Dampen */
         double translationVal = MathUtil.applyDeadband(translationSup.getAsDouble(), Constants.stickDeadband) * (dampenSup.getAsBoolean() ? 0.2 : 1);
         double strafeVal = MathUtil.applyDeadband(strafeSup.getAsDouble(), Constants.stickDeadband) * (dampenSup.getAsBoolean() ? 0.2 : 1);
@@ -52,7 +54,8 @@ public class SwerveCommand extends Command {
         double dynamicHeading = dynamicHeadingSup.getAsDouble();
         
      //heading direction state
-        switch(States.driveState){
+        switch(States.driveState)
+        {
             case forwardHold:
 
                 //heading lock - forward

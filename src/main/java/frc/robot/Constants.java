@@ -179,12 +179,9 @@ public final class Constants
             // Rev Through Bore Encoder and set it here:
             public static final Rotation2d ELEVATOR_ENCODER_OFFSET = Rotation2d.fromDegrees(350+97);
             public static final double ELEVATOR_GEAR_RATIO = 60.0;
-            public static final double ELEVATOR_FLOOR_ANGLE = 91;
-            public static final double ELEVATOR_SOURCE_ANGLE = 30.1;
-            public static final double ELEVATOR_AMP_ANGLE = 1.3;
-            public static final double ARM_LONGSHOT_ANGLE = 65.0;
-            public static final double ARM_SPEAKER_ANGLE = 80.1;
-            public static final double ELEVATOR_CLIMB_ANGLE = 70.0;
+            public static final double ELEVATOR_START_ANGLE = 91; // We hope this hits the tray
+            public static final double ELEVATOR_CORAL1_ANGLE = 30.1;
+            public static final double ELEVATOR_CORAL2_ANGLE = 1.3;
     
             // ELEVATOR PID - we will tune these values!!
             public static final int ELEVATOR_CURRENT_LIMIT = 50;
@@ -197,8 +194,11 @@ public final class Constants
             public static final double ELEVATOR_S = 1.1;
             public static final double ELEVATOR_G = 1.2;
             public static final double ELEVATOR_V = 1.3;
+            public static final double ERROR_TOLERANCE = 0.1;
         }
     }
+
+    public static 
 
     public static final class AutoConstants { //TODO: The below constants are used in the example auto, and must be tuned to specific robot
         public static final double kMaxSpeedMetersPerSecond = 3;
