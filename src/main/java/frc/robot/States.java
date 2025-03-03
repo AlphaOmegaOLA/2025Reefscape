@@ -18,13 +18,13 @@ public class States
         hold, coral0, coral1, coral2
     }
 
-    public static enum ClimberStates 
+    public static enum CoralIntakeArmStates 
     {
-        hold, up, down
+        coral0, coral1, coral2, intake
     }
 
     public static DriveStates driveState = DriveStates.standard;
     public static AlignedStates alignedState = AlignedStates.normal;
     public static ElevatorStates elevatorState = ElevatorStates.hold;
-    public static ElevatorStates climberState = ElevatorStates.hold;
+    public static CoralIntakeArmStates coralIntakeArmState = CoralIntakeArmStates.coral0;
 }

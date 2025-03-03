@@ -23,7 +23,7 @@ public final class Constants
     public static final double stickDeadband = 0.1;
 
     public static final class Swerve {
-        public static final int pigeonID = 10;
+        public static final int pigeonID = 18;
         public static final boolean invertGyro = false; // Always ensure Gyro is CCW+ CW-
 
         public static final COTSNeoSwerveConstants chosenModule =  //TODO: This must be tuned to specific robot
@@ -113,9 +113,9 @@ public final class Constants
         /* Module Specific Constants */
         /* Front Left Module - Module 0 */
         public static final class Mod0 { //TODO: This must be tuned to specific robot
-            public static final int driveMotorID = 2;
-            public static final int angleMotorID = 1;
-            public static final int canCoderID = 11;
+            public static final int driveMotorID = 1;
+            public static final int angleMotorID = 3;
+            public static final int canCoderID = 2;
             public static final Rotation2d angleOffset = Rotation2d.fromRotations(0.05002);
             public static final SwerveModuleConstants constants = 
                 new SwerveModuleConstants(driveMotorID, angleMotorID, canCoderID, angleOffset);
@@ -123,9 +123,9 @@ public final class Constants
 
         /* Front Right Module - Module 1 */
         public static final class Mod1 { //TODO: This must be tuned to specific robot
-            public static final int driveMotorID = 4;
-            public static final int angleMotorID = 3;
-            public static final int canCoderID = 13;
+            public static final int driveMotorID = 15;
+            public static final int angleMotorID = 17;
+            public static final int canCoderID = 16;
             public static final Rotation2d angleOffset = Rotation2d.fromRotations(0.037598);
             public static final SwerveModuleConstants constants = 
                 new SwerveModuleConstants(driveMotorID, angleMotorID, canCoderID, angleOffset);
@@ -133,9 +133,9 @@ public final class Constants
         
         /* Back Left Module - Module 2 */
         public static final class Mod2 { //TODO: This must be tuned to specific robot
-            public static final int driveMotorID = 8;
-            public static final int angleMotorID = 7;
-            public static final int canCoderID = 17;
+            public static final int driveMotorID = 7;
+            public static final int angleMotorID = 9;
+            public static final int canCoderID = 8;
             public static final Rotation2d angleOffset = Rotation2d.fromRotations(0.499268);
             public static final SwerveModuleConstants constants = 
                 new SwerveModuleConstants(driveMotorID, angleMotorID, canCoderID, angleOffset);
@@ -143,9 +143,9 @@ public final class Constants
 
         /* Back Right Module - Module 3 */
         public static final class Mod3 { //TODO: This must be tuned to specific robot
-            public static final int driveMotorID = 6;
-            public static final int angleMotorID = 5;
-            public static final int canCoderID = 15;
+            public static final int driveMotorID = 10;
+            public static final int angleMotorID = 12;
+            public static final int canCoderID = 13;
             public static final Rotation2d angleOffset = Rotation2d.fromRotations(-0.389404);
             public static final SwerveModuleConstants constants = 
                 new SwerveModuleConstants(driveMotorID, angleMotorID, canCoderID, angleOffset);
@@ -165,7 +165,7 @@ public final class Constants
         public static final class Elevator 
         {
             // ARM MOTOR IDS AND SPEEDS
-            public static final int ELEVATOR_MOTOR_ID = 8;
+            public static final int ELEVATOR_MOTOR_ID = 4;
             public static final boolean ELEVATOR_MOTOR_INVERTED = false;
             public static final  IdleMode ELEVATOR_NEUTRAL_MODE = IdleMode.kBrake;
             public static final double FULL_SPEED = FULL;
@@ -197,8 +197,114 @@ public final class Constants
             public static final double ERROR_TOLERANCE = 0.1;
         }
     }
+    
+    public final class CoralIntakeConstants
+    {
+        public static final double FULL = 1.0;
+        public static final double HALF = 0.5;
+        public static final double QUARTER = 0.25;
+        
+        public static final class CoralIntake
+        {
+            public static final int CORAL_INTAKE_MOTOR_ID = 6;
+            public static final boolean CORAL_INTAKE_MOTOR_INVERTED = false;
+            public static final IdleMode CORAL_INTAKE_NEUTRAL_MODE = IdleMode.kBrake;
+            public static final double CORAL_INTAKE_GEAR_RATIO = 5.0;
+            public static final double FULL_SPEED = FULL;
+            public static final double HALF_SPEED = HALF;
+            public static final double QUARTER_SPEED = QUARTER;
+        }
+        
+    }
 
-    public static 
+    public final class CoralAngleConstants
+    {
+        public static final double FULL = 1.0;
+        public static final double HALF = 0.5;
+        public static final double QUARTER = 0.25;
+        
+        public static final class CoralAngle
+        {
+             // ARM MOTOR IDS AND SPEEDS
+             public static final int CORAL_ANGLE_MOTOR_ID = 5;
+             public static final boolean CORAL_ANGLE_MOTOR_INVERTED = false;
+             public static final  IdleMode CORAL_ANGLE_NEUTRAL_MODE = IdleMode.kBrake;
+             public static final double FULL_SPEED = FULL;
+             public static final double HALF_SPEED = HALF;
+             public static final double QUARTER_SPEED = QUARTER;
+             // Uses the through bore encoder
+             public static final int CORAL_ANGLE_ENCODER_ID = 0;
+         
+             // CORAL ANGLES
+             // Need to determine the starting offset angle of the
+             // Rev Through Bore Encoder and set it here:
+             public static final Rotation2d CORAL_ANGLE_ENCODER_OFFSET = Rotation2d.fromDegrees(350+97);
+             public static final double CORAL_ANGLE_GEAR_RATIO = 20.0;
+             public static final double CORAL_ANGLE_START_ANGLE = 91; // We hope this hits the tray
+             public static final double CORAL_ANGLE_CORAL1_ANGLE = 30.1;
+             public static final double CORAL_ANGLE_CORAL2_ANGLE = 45.3;
+             public static final double CORAL_ANGLE_INTAKE_ANGLE = 65.0;
+     
+             // ELEVATOR PID - we will tune these values!!
+             public static final int CORAL_ANGLE_CURRENT_LIMIT = 50;
+             public static final double CORAL_ANGLE_UPDATE_OUTPUT = .02;
+             public static final double CORAL_ANGLE_MAX_VELOCITY = 1.75;
+             public static final double CORAL_ANGLE_MAX_ACCELERATION = .75;
+             public static final double CORAL_ANGLE_P = .2;
+             public static final double CORAL_ANGLE_I = 0.0;
+             public static final double CORAL_ANGLE_D = 0.7;
+             public static final double CORAL_ANGLE_S = 1.1;
+             public static final double CORAL_ANGLE_G = 1.2;
+             public static final double CORAL_ANGLE_V = 1.3;
+             public static final double ERROR_TOLERANCE = 0.1;
+        }
+    }
+
+    public final class AlgaeIntakeConstants
+    {
+        public static final double FULL = 1.0;
+        public static final double HALF = 0.5;
+        public static final double QUARTER = 0.25;
+        
+        public static final class AlgaeIntake
+        {
+            public static final int ALGAE_INTAKE_MOTOR_ID = 11;
+            public static final boolean ALGAE_INTAKE_MOTOR_INVERTED = false;
+            public static final  IdleMode ALGAE_INTAKE_NEUTRAL_MODE = IdleMode.kBrake;
+            public static final double ALGAE_INTAKE_GEAR_RATIO = 1.0;
+            public static final double FULL_SPEED = FULL;
+            public static final double HALF_SPEED = HALF;
+            public static final double QUARTER_SPEED = QUARTER;
+        }
+    }
+     public final class ClimberConstants
+    {
+        public static final double FULL = 1.0;
+        public static final double HALF = 0.5;
+        public static final double QUARTER = 0.25;
+
+        public static final class Climber
+        {
+            public static final int CLIMBER_MOTOR_ID = 14;
+            public static final boolean CLIMBER_MOTOR_INVERTED = false;
+            public static final  IdleMode CLIMBER_NEUTRAL_MODE = IdleMode.kBrake;
+            public static final double FULL_SPEED = FULL;
+            public static final double HALF_SPEED = HALF;
+            public static final double QUARTER_SPEED = QUARTER;
+            public static final double CLIMBER_GEAR_RATIO = 100.0;
+            public static final int CLIMBER_CURRENT_LIMIT = 50;
+            public static final double CLIMBER_UPDATE_OUTPUT = .02;
+            public static final double CLIMBER_MAX_VELOCITY = 1.75;
+            public static final double CLIMBER_MAX_ACCELERATION = .75;
+            public static final double CLIMBER_P = .2;
+            public static final double CLIMBER_I = 0.0;
+            public static final double CLIMBER_D = 0.7;
+            public static final double CLIMBER_S = 1.1;
+            public static final double CLIMBER_G = 1.2;
+            public static final double CLIMBER_V = 1.3;
+            public static final double ERROR_TOLERANCE = 0.1;
+        }
+    }
 
     public static final class AutoConstants { //TODO: The below constants are used in the example auto, and must be tuned to specific robot
         public static final double kMaxSpeedMetersPerSecond = 3;
