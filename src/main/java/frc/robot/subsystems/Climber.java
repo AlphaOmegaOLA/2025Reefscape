@@ -25,10 +25,12 @@ public class Climber extends SubsystemBase
 
   public Climber() 
   {
+
         climberMotor = new SparkMax(ClimberConstants.Climber.CLIMBER_MOTOR_ID, MotorType.kBrushless);
         climberEncoder = climberMotor.getEncoder();
+        hardwareConfigs = new HardwareConfigs();
         climberEncoder.setPosition(0);
-        climberMotor.configure(hardwareConfigs.elevatorSparkConfig, ResetMode.kNoResetSafeParameters, PersistMode.kPersistParameters);
+        climberMotor.configure(hardwareConfigs.climberSparkConfig, ResetMode.kNoResetSafeParameters, PersistMode.kPersistParameters);
   }
   
   private void setMotor(double speed)

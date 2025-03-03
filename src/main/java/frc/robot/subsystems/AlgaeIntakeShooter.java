@@ -8,14 +8,18 @@ import com.revrobotics.spark.SparkMax;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.AlgaeIntakeConstants;
+import frc.robot.HardwareConfigs;
 
 public class AlgaeIntakeShooter extends SubsystemBase 
 {
   private SparkMax algaeIntakeShooterMotor;
+  private HardwareConfigs hardwareConfigs;
 
   public AlgaeIntakeShooter() 
   {
     algaeIntakeShooterMotor = new SparkMax(AlgaeIntakeConstants.AlgaeIntake.ALGAE_INTAKE_MOTOR_ID, MotorType.kBrushless);
+    hardwareConfigs = new HardwareConfigs();
+    algaeIntakeShooterMotor.configure(hardwareConfigs.algaeIntakeSparkConfig, SparkMax.ResetMode.kNoResetSafeParameters, SparkMax.PersistMode.kPersistParameters);
   }
   
   private void setMotor(double speed)
