@@ -4,7 +4,7 @@ import static edu.wpi.first.units.Units.Amp;
 
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj2.command.Command;
-import frc.robot.Constants;
+import frc.robot.Constants.ElevatorConstants;
 import frc.robot.States;
 
 public class PIDElevatorCommand extends Command 
@@ -19,8 +19,8 @@ public class PIDElevatorCommand extends Command
         this.PIDElevator = PIDElevator;
         addRequirements(PIDElevator);
 
-        elevatorController = new PIDController(Constants.ElevatorConstants.Elevator.ELEVATOR_P, Constants.ElevatorConstants.Elevator.ELEVATOR_I, Constants.ElevatorConstants.Elevator.ELEVATOR_D);
-        elevatorController.setTolerance(Constants.ElevatorConstants.Elevator.ERROR_TOLERANCE);
+        elevatorController = new PIDController(ElevatorConstants.Elevator.ELEVATOR_P, ElevatorConstants.Elevator.ELEVATOR_I, ElevatorConstants.Elevator.ELEVATOR_D);
+        elevatorController.setTolerance(ElevatorConstants.Elevator.ERROR_TOLERANCE);
     }
 
     // Called when the command is initially scheduled.
@@ -37,13 +37,13 @@ public class PIDElevatorCommand extends Command
                 PIDElevator.setAngle(PIDElevator.getAngle());
                 break;
             case coral0:
-                PIDElevator.setAngle(Constants.ElevatorConstants.Elevator.ELEVATOR_START_ANGLE);
+                PIDElevator.setAngle(ElevatorConstants.Elevator.ELEVATOR_START_ANGLE);
                 break;
             case coral1:
-                PIDElevator.setAngle(Constants.ElevatorConstants.Elevator.ELEVATOR_CORAL1_ANGLE);
+                PIDElevator.setAngle(ElevatorConstants.Elevator.ELEVATOR_CORAL1_ANGLE);
                 break;
             case coral2:
-                PIDElevator.setAngle(Constants.ElevatorConstants.Elevator.ELEVATOR_CORAL2_ANGLE);
+                PIDElevator.setAngle(ElevatorConstants.Elevator.ELEVATOR_CORAL2_ANGLE);
                 break;
         }
 

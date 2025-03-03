@@ -12,10 +12,15 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import edu.wpi.first.wpilibj2.command.button.POVButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
+import frc.robot.ControllerMap;
+import frc.robot.States;
 
 import frc.robot.commands.*;
 import frc.robot.subsystems.*;
+import frc.robot.subsystems.Elevator.*;
+import frc.robot.commands.RobotSkills;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -26,31 +31,58 @@ import frc.robot.subsystems.*;
 public class RobotContainer 
 {
     /* Controllers */
-    private final Joystick driver = new Joystick(0);
+    private final XboxController driver = new XboxController(0);
+    private final XboxController operator = new XboxController(1);
 
    /* Driver Controls */
 	private final int translationAxis = 1;
 	private final int strafeAxis = 0;
-	private final int rotationAxis = 2;
+	private final int rotationAxis = 4;
 
     /* Driver Buttons */
-    private final JoystickButton zeroGyro = new JoystickButton(driver, XboxController.Button.kY.value);
-    private final JoystickButton robotCentric = new JoystickButton(driver, XboxController.Button.kLeftBumper.value);
+    private final JoystickButton zeroGyro = new JoystickButton(driver, ControllerMap.LOGO_RIGHT);
+    private final POVButton climber_up = new POVButton(driver, 90);
+    private final POVButton climber_down = new POVButton(driver, 270);
 
-    private final JoystickButton dampen = new JoystickButton(driver, XboxController.Button.kRightBumper.value);
+    /* Operator Buttons */
+    // X = Algae Spool Out
+    private final JoystickButton algaeSpool_out = new JoystickButton(operator, XboxController.Button.kX.value);
+    // Y = Algae Intake
+    private final JoystickButton algae_intake = new JoystickButton(operator, XboxController.Button.kY.value);
+    // Right Bumper = Algae Outtake
+    private final JoystickButton algae_outtake = new JoystickButton(operator, XboxController.Button.kRightBumper.value);
+    // Left Bumper = Algae Spool In
+    private final JoystickButton algaeSpool_in = new JoystickButton(operator, XboxController.Button.kLeftBumper.value);
+    // A = Coral Intake Position and Angle
+    private final JoystickButton coral_Intake = new JoystickButton(operator, XboxController.Button.kA.value);
+    // B = Coral Start Position and Angle
+    private final JoystickButton coral_Start = new JoystickButton(operator, XboxController.Button.kB.value);
+    // Right Trigger = Coral1 Position and Angle
+    private final JoystickButton coral_coral1 = new JoystickButton(operator, ControllerMap.RB);
+    // Left Trigger = Coral2 Position and Angle
+    private final JoystickButton coral_coral2 = new JoystickButton(operator, ControllerMap.LB);
 
-    private final JoystickButton DynamicLock = new JoystickButton(driver, XboxController.Button.kX.value);
-
-    private final Trigger forwardHold = new Trigger(() -> (driver.getRawAxis(4) > 0.75));
-    private final Trigger backwardHold = new Trigger(() -> (driver.getRawAxis(4) < -0.75));
 
     /* Subsystems */
     private final PoseEstimator s_PoseEstimator = new PoseEstimator();
     private final Swerve s_Swerve = new Swerve(s_PoseEstimator);
+    private final PIDElevator s_elevator = new PIDElevator();
+    private final Climber s_Climber = new Climber();
+    private final AlgaeSpool s_AlgaeSpool = new AlgaeSpool();
+    private final AlgaeIntakeShooter s_AlgaeIntakeShooter = new AlgaeIntakeShooter();
+    private final CoralIntakeArm s_CoralIntakeArm = new CoralIntakeArm();
+    private final CoralIntakeShooter s_CoralIntakeShooter = new CoralIntakeShooter();
+    private final RobotSkills coral = new RobotSkills(s_CoralIntakeArm, s_elevator);
     //private final Vision s_Vision = new Vision(s_PoseEstimator);
 
+    /* Commands */
+    private final Command c_coralIntake = coral.coralIntake();
+    private final Command c_coralStart = coral.coralStart();
+    private final Command c_coral1 = coral.coral1();
+    private final Command c_coral2 = coral.coral2();
+
     /* AutoChooser */
-    private final SendableChooser<Command> autoChooser;
+   // private final SendableChooser<Command> autoChooser;
 
     /** The container for the robot. Contains subsystems, OI devices, and commands. */
     public RobotContainer() 
@@ -58,20 +90,31 @@ public class RobotContainer
         s_Swerve.setDefaultCommand(
             new SwerveCommand(
                 s_Swerve, 
-                () -> -driver.getRawAxis(translationAxis), 
-                () -> -driver.getRawAxis(strafeAxis), 
+                () -> driver.getRawAxis(translationAxis), 
+                () -> driver.getRawAxis(strafeAxis), 
                 () -> -driver.getRawAxis(rotationAxis), 
-                () -> robotCentric.getAsBoolean(),
-                () -> dampen.getAsBoolean(),
+                () -> false,
+                () -> false,
                 () -> 0 // Dynamic heading placeholder
             )
         );
 
+        // Manual Intake for Coral
+        s_CoralIntakeShooter.setDefaultCommand(
+            Commands.run(() -> s_CoralIntakeShooter.manual(operator.getLeftY()), s_CoralIntakeShooter)
+        );
+
+        // The defaults elevator PID angle
+        s_elevator.setDefaultCommand(new PIDElevatorCommand(s_elevator));
+
+        // The default coral Arm PID angle
+        s_CoralIntakeArm.setDefaultCommand(new CoralIntakeArmCommand(s_CoralIntakeArm));
+
         // Configure the button bindings
         configureButtonBindings();
+    }
 
-
-        //Pathplanner commands - templates
+        /*//Pathplanner commands - templates
         NamedCommands.registerCommand("marker1", Commands.print("Passed marker 1"));
         NamedCommands.registerCommand("marker2", Commands.print("Passed marker 2"));
         NamedCommands.registerCommand("print hello", Commands.print("hello"));
@@ -80,7 +123,7 @@ public class RobotContainer
         //Auto chooser
         autoChooser = AutoBuilder.buildAutoChooser("New Auto"); // Default auto will be `Commands.none()`
         SmartDashboard.putData("Auto Mode", autoChooser);
-    }
+    }*/
 
     /**
      * Use this method to define your button->command mappings. Buttons can be created by
@@ -93,19 +136,18 @@ public class RobotContainer
         /* Driver Buttons */
         zeroGyro.onTrue(new InstantCommand(() -> s_Swerve.zeroHeading()));
 
-    //Heading lock bindings
-        forwardHold.onTrue(
-            new InstantCommand(() -> States.driveState = States.DriveStates.forwardHold)).onFalse(
-            new InstantCommand(() -> States.driveState = States.DriveStates.standard)
-        );
-        backwardHold.onTrue(
-            new InstantCommand(() -> States.driveState = States.DriveStates.backwardHold)).onFalse(
-            new InstantCommand(() -> States.driveState = States.DriveStates.standard)
-        );
-        DynamicLock.onTrue(
-            new InstantCommand(() -> States.driveState = States.DriveStates.DynamicLock)).onFalse(
-            new InstantCommand(() -> States.driveState = States.DriveStates.standard)
-        );
+        climber_up.whileTrue(new InstantCommand(() -> s_Climber.manual(1.0)));
+        climber_down.whileTrue(new InstantCommand(() -> s_Climber.manual(-1.0)));
+
+        /* Operator Buttons */
+        algaeSpool_out.whileTrue(new InstantCommand(() -> s_AlgaeSpool.intake(1.0)));
+        algae_intake.whileTrue(new InstantCommand(() -> s_AlgaeIntakeShooter.manual(1.0)));
+        algae_outtake.whileTrue(new InstantCommand(() -> s_AlgaeIntakeShooter.manual(-1.0)));
+        algaeSpool_in.whileTrue(new InstantCommand(() -> s_AlgaeSpool.intake(-1.0)));
+        coral_Intake.onTrue(c_coralIntake);
+        coral_Start.onTrue(c_coralStart);
+        coral_coral1.onTrue(c_coral1);
+        coral_coral2.onTrue(c_coral2);
     }
 
     /**
@@ -113,9 +155,9 @@ public class RobotContainer
      *
      * @return the command to run in autonomous
      */
-    public Command getAutonomousCommand() 
+    /*public Command getAutonomousCommand() 
     {
         // An ExampleCommand will run in autonomous
         return autoChooser.getSelected();
-    }
+    }*/
 }

@@ -144,8 +144,8 @@ public final class Constants
         /* Back Right Module - Module 3 */
         public static final class Mod3 { //TODO: This must be tuned to specific robot
             public static final int driveMotorID = 10;
-            public static final int angleMotorID = 12;
-            public static final int canCoderID = 13;
+            public static final int angleMotorID = 13;
+            public static final int canCoderID = 12;
             public static final Rotation2d angleOffset = Rotation2d.fromRotations(-0.389404);
             public static final SwerveModuleConstants constants = 
                 new SwerveModuleConstants(driveMotorID, angleMotorID, canCoderID, angleOffset);
@@ -257,6 +257,24 @@ public final class Constants
              public static final double CORAL_ANGLE_G = 1.2;
              public static final double CORAL_ANGLE_V = 1.3;
              public static final double ERROR_TOLERANCE = 0.1;
+        }
+    }
+
+    public final class AlgaeSpoolConstants
+    {
+        public static final double FULL = 1.0;
+        public static final double HALF = 0.5;
+        public static final double QUARTER = 0.25;
+
+        public static final class AlgaeSpool
+        {
+            public static final int ALGAE_SPOOL_MOTOR_ID = 0;
+            public static final boolean ALGAE_SPOOL_MOTOR_INVERTED = false;
+            public static final IdleMode ALGAE_SPOOL_NEUTRAL_MODE = IdleMode.kBrake;
+            public static final double ALGAE_SPOOL_GEAR_RATIO = 1.0;
+            public static final double FULL_SPEED = FULL;
+            public static final double HALF_SPEED = HALF;
+            public static final double QUARTER_SPEED = QUARTER;
         }
     }
 
