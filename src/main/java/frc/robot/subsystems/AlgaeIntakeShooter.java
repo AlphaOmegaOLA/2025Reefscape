@@ -41,6 +41,6 @@ public class AlgaeIntakeShooter extends SubsystemBase
 
   public void manual(double speed)
   {
-      this.setMotor(speed);       
+      this.setMotor(speed * .25);       
   }
 }

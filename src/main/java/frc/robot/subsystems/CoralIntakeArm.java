@@ -52,6 +52,6 @@ public class CoralIntakeArm extends SubsystemBase
   public void periodic() 
   {
     // This method will be called once per scheduler run
-    SmartDashboard.putNumber("CLIMBER ANGLE", coralIntakeArmEncoder.getPosition());
+    SmartDashboard.putNumber("CORAL ARM ANGLE", coralIntakeArmEncoder.getPosition());
   }
 }

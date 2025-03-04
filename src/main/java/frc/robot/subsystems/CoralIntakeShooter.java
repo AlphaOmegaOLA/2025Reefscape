@@ -32,18 +32,18 @@ public class CoralIntakeShooter extends SubsystemBase
 
   public Command slow()
   {
-      return this.startEnd(() -> this.setMotor(-CoralIntakeConstants.CoralIntake.HALF_SPEED),
+      return this.startEnd(() -> this.setMotor(-CoralIntakeConstants.CoralIntake.QUARTER_SPEED),
           () -> this.setMotor(0));
   }
 
   public Command fast()
   {
-      return this.startEnd(() -> this.setMotor(-CoralIntakeConstants.CoralIntake.FULL_SPEED),
+      return this.startEnd(() -> this.setMotor(-CoralIntakeConstants.CoralIntake.QUARTER_SPEED),
           () -> this.setMotor(0));
   }
 
   public void manual(double speed)
   {
-      this.setMotor(speed);       
+      this.setMotor(speed * 0.25);       
   }
 }

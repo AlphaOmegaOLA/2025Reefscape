@@ -188,12 +188,12 @@ public final class Constants
             public static final double ELEVATOR_UPDATE_OUTPUT = .02;
             public static final double ELEVATOR_MAX_VELOCITY = 1.75;
             public static final double ELEVATOR_MAX_ACCELERATION = .75;
-            public static final double ELEVATOR_P = .2;
+            public static final double ELEVATOR_P = 0.0;
             public static final double ELEVATOR_I = 0.0;
-            public static final double ELEVATOR_D = 0.7;
-            public static final double ELEVATOR_S = 1.1;
-            public static final double ELEVATOR_G = 1.2;
-            public static final double ELEVATOR_V = 1.3;
+            public static final double ELEVATOR_D = 0.0;
+            public static final double ELEVATOR_S = 0.0;
+            public static final double ELEVATOR_G = 0.0;
+            public static final double ELEVATOR_V = 0.0;
             public static final double ERROR_TOLERANCE = 0.1;
         }
     }
@@ -233,14 +233,14 @@ public final class Constants
              public static final double HALF_SPEED = HALF;
              public static final double QUARTER_SPEED = QUARTER;
              // Uses the through bore encoder
-             public static final int CORAL_ANGLE_ENCODER_ID = 0;
+             //public static final int CORAL_ANGLE_ENCODER_ID = 0;
          
              // CORAL ANGLES
              // Need to determine the starting offset angle of the
              // Rev Through Bore Encoder and set it here:
              public static final Rotation2d CORAL_ANGLE_ENCODER_OFFSET = Rotation2d.fromDegrees(350+97);
              public static final double CORAL_ANGLE_GEAR_RATIO = 20.0;
-             public static final double CORAL_ANGLE_START_ANGLE = 91; // We hope this hits the tray
+             public static final double CORAL_ANGLE_START_ANGLE = 5.0; // We hope this hits the tray
              public static final double CORAL_ANGLE_CORAL1_ANGLE = 30.1;
              public static final double CORAL_ANGLE_CORAL2_ANGLE = 45.3;
              public static final double CORAL_ANGLE_INTAKE_ANGLE = 65.0;
@@ -250,9 +250,9 @@ public final class Constants
              public static final double CORAL_ANGLE_UPDATE_OUTPUT = .02;
              public static final double CORAL_ANGLE_MAX_VELOCITY = 1.75;
              public static final double CORAL_ANGLE_MAX_ACCELERATION = .75;
-             public static final double CORAL_ANGLE_P = .2;
+             public static final double CORAL_ANGLE_P = 0.0;
              public static final double CORAL_ANGLE_I = 0.0;
-             public static final double CORAL_ANGLE_D = 0.7;
+             public static final double CORAL_ANGLE_D = 0.0;
              public static final double CORAL_ANGLE_S = 1.1;
              public static final double CORAL_ANGLE_G = 1.2;
              public static final double CORAL_ANGLE_V = 1.3;

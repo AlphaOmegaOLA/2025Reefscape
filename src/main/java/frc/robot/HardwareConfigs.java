@@ -89,7 +89,7 @@ public final class HardwareConfigs
         //Gear ratio and wrapping config
         climberSparkConfig.encoder.positionConversionFactor(360/Constants.Swerve.angleGearRatio);
         climberSparkConfig.encoder.velocityConversionFactor(Constants.ClimberConstants.Climber.CLIMBER_GEAR_RATIO / 100);
-        climberSparkConfig.closedLoop.positionWrappingEnabled(true);
+        climberSparkConfig.closedLoop.positionWrappingEnabled(false);
 
         //current limiting
         climberSparkConfig.smartCurrentLimit(40);
@@ -104,7 +104,7 @@ public final class HardwareConfigs
         //Gear ratio and wrapping config
         coralAngleSparkConfig.encoder.positionConversionFactor(360/Constants.Swerve.angleGearRatio);
         coralAngleSparkConfig.encoder.velocityConversionFactor(Constants.CoralAngleConstants.CoralAngle.CORAL_ANGLE_GEAR_RATIO / 20);
-        coralAngleSparkConfig.closedLoop.positionWrappingEnabled(true);
+        coralAngleSparkConfig.closedLoop.positionWrappingEnabled(false);
 
         //current limiting
         coralAngleSparkConfig.smartCurrentLimit(40);
@@ -124,7 +124,7 @@ public final class HardwareConfigs
         //Gear ratio and wrapping config
         coralIntakeSparkConfig.encoder.positionConversionFactor(360/Constants.Swerve.angleGearRatio);
         coralIntakeSparkConfig.encoder.velocityConversionFactor(Constants.CoralIntakeConstants.CoralIntake.CORAL_INTAKE_GEAR_RATIO / 5);
-        coralIntakeSparkConfig.closedLoop.positionWrappingEnabled(true);
+        coralIntakeSparkConfig.closedLoop.positionWrappingEnabled(false);
 
         //current limiting
         coralIntakeSparkConfig.smartCurrentLimit(40);
@@ -138,7 +138,7 @@ public final class HardwareConfigs
         //Gear ratio and wrapping config
         algaeIntakeSparkConfig.encoder.positionConversionFactor(360/Constants.Swerve.angleGearRatio);
         algaeIntakeSparkConfig.encoder.velocityConversionFactor(Constants.AlgaeIntakeConstants.AlgaeIntake.ALGAE_INTAKE_GEAR_RATIO / 1);
-        algaeIntakeSparkConfig.closedLoop.positionWrappingEnabled(true);
+        algaeIntakeSparkConfig.closedLoop.positionWrappingEnabled(false);
 
         //current limiting
         algaeIntakeSparkConfig.smartCurrentLimit(40);

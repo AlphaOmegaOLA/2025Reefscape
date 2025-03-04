@@ -41,8 +41,8 @@ public class RobotContainer
 
     /* Driver Buttons */
     private final JoystickButton zeroGyro = new JoystickButton(driver, ControllerMap.LOGO_RIGHT);
-    private final POVButton climber_up = new POVButton(driver, 90);
-    private final POVButton climber_down = new POVButton(driver, 270);
+    private final POVButton climber_up = new POVButton(driver, 0);
+    private final POVButton climber_down = new POVButton(driver, 180);
 
     /* Operator Buttons */
     // X = Algae Spool Out
@@ -103,6 +103,7 @@ public class RobotContainer
         s_CoralIntakeShooter.setDefaultCommand(
             Commands.run(() -> s_CoralIntakeShooter.manual(operator.getLeftY()), s_CoralIntakeShooter)
         );
+
 
         // The defaults elevator PID angle
         s_elevator.setDefaultCommand(new PIDElevatorCommand(s_elevator));

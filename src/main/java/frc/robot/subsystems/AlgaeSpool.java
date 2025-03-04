@@ -20,7 +20,7 @@ public class AlgaeSpool extends SubsystemBase
     // Take a Note in
     public void intake(double speed)
     {
-        algaeSpoolMotor.set(speed * .45);
+        algaeSpoolMotor.set(speed * .2);
     }
 
     // Run intake at reduced speed
