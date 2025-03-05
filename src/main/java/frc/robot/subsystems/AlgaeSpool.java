@@ -20,7 +20,11 @@ public class AlgaeSpool extends SubsystemBase
     // Take a Note in
     public void intake(double speed)
     {
+        // while (speed != 0)
         algaeSpoolMotor.set(speed * .2);
+        // if (speed == 0)
+        // { algaeSpoolMotor.set(speed);}
+        // Use the while or if statement to make the motor stop when button is released
     }
 
     // Run intake at reduced speed

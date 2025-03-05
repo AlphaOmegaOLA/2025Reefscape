@@ -41,6 +41,11 @@ public class AlgaeIntakeShooter extends SubsystemBase
 
   public void manual(double speed)
   {
-      this.setMotor(speed * .25);       
+    // while (speed != 0)
+      this.setMotor(speed * .25);
+    // if (speed == 0)
+    // { algaeIntakeShooterMotor.set(speed);}
+    // Use the while or if statement to make the motor stop when button is released
+
   }
 }

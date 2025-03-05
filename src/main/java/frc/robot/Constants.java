@@ -30,6 +30,7 @@ public final class Constants
         COTSNeoSwerveConstants.SDSMK4i(driveGearRatios.SDSMK4i_L2);
 
         /* Drivetrain Constants */
+        // Did we update these measurements?
         public static final double trackWidth = Units.inchesToMeters(23.75); //TODO: This must be tuned to specific robot
         public static final double wheelBase = Units.inchesToMeters(24); //TODO: This must be tuned to specific robot
         public static final double wheelCircumference = chosenModule.wheelCircumference;
@@ -79,6 +80,7 @@ public final class Constants
         public static final double angleKF = chosenModule.angleKF;
 
         /* Drive Motor PID Values */
+        // Did we update this yet?
         public static final double driveKP = 0.012; //TODO: This must be tuned to specific robot
         public static final double driveKI = 0.0;
         public static final double driveKD = 0.0;
@@ -96,6 +98,7 @@ public final class Constants
 
 
         /* Drive Motor Characterization Values from SysID */
+        // Did we update this yet?
         public static final double driveKS = (0.32); //TODO: This must be tuned to specific robot
         public static final double driveKV = (1.51);
         public static final double driveKA = (0.27);
