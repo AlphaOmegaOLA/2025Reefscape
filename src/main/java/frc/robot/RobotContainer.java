@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.POVButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
@@ -138,13 +139,20 @@ public class RobotContainer
         zeroGyro.onTrue(new InstantCommand(() -> s_Swerve.zeroHeading()));
 
         climber_up.whileTrue(new InstantCommand(() -> s_Climber.manual(1.0)));
+        climber_up.onFalse(new InstantCommand (() -> s_Climber.manual(0.0)));
         climber_down.whileTrue(new InstantCommand(() -> s_Climber.manual(-1.0)));
+        climber_down.onFalse(new InstantCommand (() -> s_Climber.manual(0.0)));
+
 
         /* Operator Buttons */
-        algaeSpool_out.whileTrue(new InstantCommand(() -> s_AlgaeSpool.intake(1.0)));
+        algaeSpool_out.whileTrue(new InstantCommand (() -> s_AlgaeSpool.intake(1.0)));
+        algaeSpool_out.onFalse(new InstantCommand(() -> s_AlgaeSpool.intakeStop()));
         algae_intake.whileTrue(new InstantCommand(() -> s_AlgaeIntakeShooter.manual(1.0)));
+        algae_intake.onFalse(new InstantCommand(() -> s_AlgaeIntakeShooter.manual(0.0)));
         algae_outtake.whileTrue(new InstantCommand(() -> s_AlgaeIntakeShooter.manual(-1.0)));
+        algae_outtake.onFalse(new InstantCommand(() -> s_AlgaeIntakeShooter.manual(0.0)));
         algaeSpool_in.whileTrue(new InstantCommand(() -> s_AlgaeSpool.intake(-1.0)));
+        algaeSpool_in.onFalse(new InstantCommand(() -> s_AlgaeSpool.intakeStop()));
         coral_Intake.onTrue(c_coralIntake);
         coral_Start.onTrue(c_coralStart);
         coral_coral1.onTrue(c_coral1);

@@ -45,6 +45,10 @@ public class PIDElevatorCommand extends Command
             case coral2:
                 PIDElevator.setAngle(ElevatorConstants.Elevator.ELEVATOR_CORAL2_ANGLE);
                 break;
+            default:
+                PIDElevator.setAngle(PIDElevator.getAngle());
+                break;
+
         }
 
         PIDElevator.runElevator(elevatorController.calculate(PIDElevator.getAngle(), PIDElevator.setpoint));

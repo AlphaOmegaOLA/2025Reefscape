@@ -8,7 +8,8 @@ import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.kinematics.SwerveDriveOdometry;
 import edu.wpi.first.math.kinematics.SwerveModulePosition;
 
-import com.ctre.phoenix.sensors.PigeonIMU;
+//import com.ctre.phoenix.sensors.PigeonIMU;
+import com.ctre.phoenix6.hardware.Pigeon2;
 import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.config.RobotConfig;
 import com.pathplanner.lib.controllers.PPHolonomicDriveController;
@@ -29,7 +30,8 @@ public class Swerve extends SubsystemBase
 
     public SwerveDriveOdometry swerveOdometry;
     public SwerveMod[] mSwerveMods;
-    public PigeonIMU gyro;
+    //public PigeonIMU gyro;
+    public Pigeon2 gyro;
     public RobotConfig config;
     private Field2d field = new Field2d();
 
@@ -42,8 +44,9 @@ public class Swerve extends SubsystemBase
           Constants.AutoConstants.moduleConfig,
           Constants.Swerve.trackWidth);
 
-        gyro = new PigeonIMU(Constants.Swerve.pigeonID);
-        gyro.configFactoryDefault();
+        //gyro = new PigeonIMU(Constants.Swerve.pigeonID);
+        gyro = new Pigeon2(Constants.Swerve.pigeonID);
+        //gyro.configFactoryDefault();
         gyro.setYaw(0);
 
         mSwerveMods = new SwerveMod[] {
@@ -157,7 +160,8 @@ public class Swerve extends SubsystemBase
     }
 
     public Rotation2d getGyroYaw() {
-        return Rotation2d.fromDegrees(gyro.getYaw());
+        //return Rotation2d.fromDegrees(gyro.getYaw());
+        return gyro.getRotation2d();
     }
 
     public void setHeading(Rotation2d heading){

@@ -32,7 +32,7 @@ public class CoralIntakeArm extends SubsystemBase
     coralIntakeArmMotor = new SparkMax(CoralAngleConstants.CoralAngle.CORAL_ANGLE_MOTOR_ID, MotorType.kBrushless);
     coralIntakeArmEncoder = coralIntakeArmMotor.getEncoder();
     hardwareConfigs = new HardwareConfigs();
-    coralIntakeArmEncoder.setPosition(0);
+    coralIntakeArmEncoder.setPosition(10);
     coralIntakeArmMotor.configure(hardwareConfigs.coralAngleSparkConfig, ResetMode.kNoResetSafeParameters, PersistMode.kPersistParameters);
     closedLoopController = coralIntakeArmMotor.getClosedLoopController();
   }

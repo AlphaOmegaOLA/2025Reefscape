@@ -46,6 +46,6 @@ public class PIDElevator extends SubsystemBase
   public void periodic() 
   {
     // This method will be called once per scheduler run
-    SmartDashboard.putNumber("ARM ANGLE", elevatorEncoder.getAngle().getDegrees());
+    SmartDashboard.putNumber("ELEVATOR ANGLE", elevatorEncoder.getAngle().getDegrees());
   }
 }
