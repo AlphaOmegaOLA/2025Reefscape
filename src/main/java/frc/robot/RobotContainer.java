@@ -21,7 +21,6 @@ import frc.robot.States;
 import frc.robot.commands.*;
 import frc.robot.subsystems.*;
 import frc.robot.subsystems.Elevator.*;
-import frc.robot.commands.RobotSkills;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a

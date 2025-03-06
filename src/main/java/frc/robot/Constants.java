@@ -182,7 +182,7 @@ public final class Constants
             // Rev Through Bore Encoder and set it here:
             public static final Rotation2d ELEVATOR_ENCODER_OFFSET = Rotation2d.fromDegrees(350+97);
             public static final double ELEVATOR_GEAR_RATIO = 60.0;
-            public static final double ELEVATOR_START_ANGLE = 0.0; // We hope this hits the tray
+            public static final double ELEVATOR_START_ANGLE = 15.0; // We hope this hits the tray
             public static final double ELEVATOR_CORAL1_ANGLE = 30.1;
             public static final double ELEVATOR_CORAL2_ANGLE = 1.3;
     
@@ -191,7 +191,7 @@ public final class Constants
             public static final double ELEVATOR_UPDATE_OUTPUT = .02;
             public static final double ELEVATOR_MAX_VELOCITY = 1.75;
             public static final double ELEVATOR_MAX_ACCELERATION = .75;
-            public static final double ELEVATOR_P = 0.002;
+            public static final double ELEVATOR_P = 0.05;
             public static final double ELEVATOR_I = 0.0;
             public static final double ELEVATOR_D = 0.0002;
             public static final double ELEVATOR_S = 0.0;

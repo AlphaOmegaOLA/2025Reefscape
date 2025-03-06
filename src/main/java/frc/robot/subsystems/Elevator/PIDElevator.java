@@ -33,7 +33,7 @@ public class PIDElevator extends SubsystemBase
 
  public void runElevator(double input)
  {
-  elevatorMotor.set(input);
+    elevatorMotor.set(input);
  }
 
  public double getAngle() 
@@ -46,6 +46,7 @@ public class PIDElevator extends SubsystemBase
   public void periodic() 
   {
     // This method will be called once per scheduler run
-    SmartDashboard.putNumber("ELEVATOR ANGLE", elevatorEncoder.getAngle().getDegrees());
+    SmartDashboard.putNumber("ELEVATOR ENCODER ANGLE", elevatorEncoder.getAngle().getDegrees());
+    SmartDashboard.putNumber("ELEVATOR SET POINT", setpoint);
   }
 }

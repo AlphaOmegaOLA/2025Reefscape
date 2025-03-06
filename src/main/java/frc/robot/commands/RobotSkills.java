@@ -29,32 +29,32 @@ public class RobotSkills
     public Command coralIntake()
     {
         return new ParallelCommandGroup(
-            new InstantCommand(() -> States.coralIntakeArmState = States.CoralIntakeArmStates.intake),
-            new InstantCommand(() -> States.elevatorState = States.ElevatorStates.coral0)
+            Commands.runOnce(() ->  States.coralIntakeArmState = States.CoralIntakeArmStates.intake),
+            Commands.runOnce(() ->  States.elevatorState = States.ElevatorStates.coral0)
         );
     }
 
     public Command coralStart()
     {
         return new ParallelCommandGroup(
-            new InstantCommand(() -> States.coralIntakeArmState = States.CoralIntakeArmStates.coral0),
-            new InstantCommand(() -> States.elevatorState = States.ElevatorStates.coral0)
+            Commands.runOnce(() ->  States.coralIntakeArmState = States.CoralIntakeArmStates.coral0),
+            Commands.runOnce(() ->  States.elevatorState = States.ElevatorStates.coral0)
         );
     }
 
     public Command coral1()
     {
         return new ParallelCommandGroup(
-            new InstantCommand(() -> States.coralIntakeArmState = States.CoralIntakeArmStates.coral1),
-            new InstantCommand(() -> States.elevatorState = States.ElevatorStates.coral1)
+            Commands.runOnce(() ->  States.coralIntakeArmState = States.CoralIntakeArmStates.coral1),
+            Commands.runOnce(() ->  States.elevatorState = States.ElevatorStates.coral1)
         );
     }
 
     public Command coral2()
     {
         return new ParallelCommandGroup(
-            new InstantCommand(() -> States.coralIntakeArmState = States.CoralIntakeArmStates.coral2),
-            new InstantCommand(() -> States.elevatorState = States.ElevatorStates.coral2)
+            Commands.runOnce(() ->  States.coralIntakeArmState = States.CoralIntakeArmStates.coral2),
+            Commands.runOnce(() ->  States.elevatorState = States.ElevatorStates.coral2)
         );
     }
 }

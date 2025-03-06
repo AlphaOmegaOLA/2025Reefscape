@@ -3,14 +3,16 @@ package frc.robot.commands;
 import static edu.wpi.first.units.Units.Amp;
 
 import edu.wpi.first.math.controller.PIDController;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Constants.ElevatorConstants;
 import frc.robot.States;
 
 public class PIDElevatorCommand extends Command 
 {
-/** Creates a new PIDArmCommand. */
+/** Creates a new PIDElevatorCommand. */
   private frc.robot.subsystems.Elevator.PIDElevator PIDElevator;
+  private double motorSpeed;
 
     private PIDController elevatorController;
     public PIDElevatorCommand(frc.robot.subsystems.Elevator.PIDElevator PIDElevator) 
@@ -35,23 +37,30 @@ public class PIDElevatorCommand extends Command
         {
             case hold:
                 PIDElevator.setAngle(PIDElevator.getAngle());
+                SmartDashboard.putNumber("ELEVATOR STATE", PIDElevator.getAngle());
                 break;
             case coral0:
                 PIDElevator.setAngle(ElevatorConstants.Elevator.ELEVATOR_START_ANGLE);
+                SmartDashboard.putNumber("ELEVATOR STATE", ElevatorConstants.Elevator.ELEVATOR_START_ANGLE);
                 break;
             case coral1:
                 PIDElevator.setAngle(ElevatorConstants.Elevator.ELEVATOR_CORAL1_ANGLE);
+                SmartDashboard.putNumber("ELEVATOR STATE", ElevatorConstants.Elevator.ELEVATOR_CORAL1_ANGLE);
                 break;
             case coral2:
                 PIDElevator.setAngle(ElevatorConstants.Elevator.ELEVATOR_CORAL2_ANGLE);
+                SmartDashboard.putNumber("ELEVATOR STATE", ElevatorConstants.Elevator.ELEVATOR_CORAL2_ANGLE);
                 break;
             default:
                 PIDElevator.setAngle(PIDElevator.getAngle());
+                SmartDashboard.putNumber("ELEVATOR STATE", PIDElevator.getAngle());
                 break;
 
         }
 
-        PIDElevator.runElevator(elevatorController.calculate(PIDElevator.getAngle(), PIDElevator.setpoint));
+        motorSpeed = elevatorController.calculate(PIDElevator.getAngle(), PIDElevator.setpoint);
+        PIDElevator.runElevator(motorSpeed);
+        SmartDashboard.putNumber("ELEVATOR MOTOR SPEED", motorSpeed);
     }
 
     // Called once the command ends or is interrupted.
