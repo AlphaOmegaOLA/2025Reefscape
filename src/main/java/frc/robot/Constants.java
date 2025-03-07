@@ -170,7 +170,7 @@ public final class Constants
             // ARM MOTOR IDS AND SPEEDS
             public static final int ELEVATOR_MOTOR_ID = 4;
             public static final boolean ELEVATOR_MOTOR_INVERTED = false;
-            public static final  IdleMode ELEVATOR_NEUTRAL_MODE = IdleMode.kBrake;
+            public static final IdleMode ELEVATOR_NEUTRAL_MODE = IdleMode.kBrake;
             public static final double FULL_SPEED = FULL;
             public static final double HALF_SPEED = HALF;
             public static final double QUARTER_SPEED = QUARTER;

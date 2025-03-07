@@ -58,9 +58,11 @@ public class RobotContainer
     // B = Coral Start Position and Angle
     private final JoystickButton coral_Start = new JoystickButton(operator, XboxController.Button.kB.value);
     // Right Trigger = Coral1 Position and Angle
-    private final JoystickButton coral_coral1 = new JoystickButton(operator, ControllerMap.RB);
+    //private final JoystickButton coral_coral1 = new JoystickButton(operator, ControllerMap.RB);
+    private final Trigger coral_coral1 = new Trigger(() -> operator.getRightTriggerAxis() > 0.5);
     // Left Trigger = Coral2 Position and Angle
-    private final JoystickButton coral_coral2 = new JoystickButton(operator, ControllerMap.LB);
+    //private final JoystickButton coral_coral2 = new JoystickButton(operator, ControllerMap.LB);
+    private final Trigger coral_coral2 = new Trigger(() -> operator.getLeftTriggerAxis() > 0.5);
 
 
     /* Subsystems */
@@ -153,9 +155,13 @@ public class RobotContainer
         algaeSpool_in.whileTrue(new InstantCommand(() -> s_AlgaeSpool.intake(-1.0)));
         algaeSpool_in.onFalse(new InstantCommand(() -> s_AlgaeSpool.intakeStop()));
         coral_Intake.onTrue(c_coralIntake);
+        //coral_Intake.whileTrue(new InstantCommand(() -> SmartDashboard.putString("buttonPressed", "CORAL INTAKE BUTTON")));
         coral_Start.onTrue(c_coralStart);
+        //coral_Start.whileTrue(new InstantCommand(() -> SmartDashboard.putString("buttonPressed", "CORAL START BUTTON")));
         coral_coral1.onTrue(c_coral1);
+        //coral_coral1.whileTrue(new InstantCommand(() -> SmartDashboard.putString("buttonPressed", "CORAL CORAL1 BUTTON")));
         coral_coral2.onTrue(c_coral2);
+        //coral_coral2.whileTrue(new InstantCommand(() -> SmartDashboard.putString("buttonPressed", "CORAL C0RAL2 BUTTON")));
     }
 
     /**
