@@ -3,6 +3,7 @@ package frc.robot;
 import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.auto.NamedCommands;
 
+import edu.wpi.first.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
@@ -10,6 +11,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
+import edu.wpi.first.cameraserver.CameraServer;
+import edu.wpi.first.cscore.UsbCamera;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
@@ -38,6 +41,9 @@ public class RobotContainer
 	private final int translationAxis = 1;
 	private final int strafeAxis = 0;
 	private final int rotationAxis = 4;
+
+    // Microsoft Life cam on arm
+    private final UsbCamera usbcamera;
 
     /* Driver Buttons */
     private final JoystickButton zeroGyro = new JoystickButton(driver, ControllerMap.LOGO_RIGHT);
@@ -112,6 +118,9 @@ public class RobotContainer
 
         // The default coral Arm PID angle
         s_CoralIntakeArm.setDefaultCommand(new CoralIntakeArmCommand(s_CoralIntakeArm));
+
+         // Camera
+         usbcamera = CameraServer.startAutomaticCapture();
 
         // Configure the button bindings
         configureButtonBindings();

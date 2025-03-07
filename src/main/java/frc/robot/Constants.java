@@ -253,7 +253,7 @@ public final class Constants
              public static final double CORAL_ANGLE_UPDATE_OUTPUT = .02;
              public static final double CORAL_ANGLE_MAX_VELOCITY = 1.75;
              public static final double CORAL_ANGLE_MAX_ACCELERATION = .75;
-             public static final double CORAL_ANGLE_P = 0.0009;
+             public static final double CORAL_ANGLE_P = 0.05;
              public static final double CORAL_ANGLE_I = 0.0;
              public static final double CORAL_ANGLE_D = 0.0002;
              public static final double CORAL_ANGLE_S = 1.1;
