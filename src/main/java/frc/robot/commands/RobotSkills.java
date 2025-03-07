@@ -40,6 +40,7 @@ public class RobotSkills
             Commands.runOnce(() ->  States.coralIntakeArmState = States.CoralIntakeArmStates.coral0),
             Commands.runOnce(() ->  States.elevatorState = States.ElevatorStates.coral0)
         );
+        //Sync Check
     }
 
     public Command coral1()
