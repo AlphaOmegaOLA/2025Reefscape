@@ -15,6 +15,7 @@ public final class HardwareConfigs
     public SparkMaxConfig algaeIntakeSparkConfig = new SparkMaxConfig();
     public SparkMaxConfig climberSparkConfig = new SparkMaxConfig();
     public SparkMaxConfig swerveDriveSparkConfig =  new SparkMaxConfig();
+    public SparkMaxConfig algaeSpoolSparkConfig = new SparkMaxConfig();
 
     public HardwareConfigs()
     {
@@ -142,5 +143,19 @@ public final class HardwareConfigs
 
         //current limiting
         algaeIntakeSparkConfig.smartCurrentLimit(40);
+
+        /** Algae Spool Configuration */
+        // Algae Spool motor config
+        // Motor inverts and neutral modes
+        algaeSpoolSparkConfig.inverted(Constants.AlgaeSpoolConstants.AlgaeSpool.ALGAE_SPOOL_MOTOR_INVERTED);
+        algaeSpoolSparkConfig.idleMode(Constants.AlgaeSpoolConstants.AlgaeSpool.ALGAE_SPOOL_NEUTRAL_MODE);
+
+        //Gear ratio and wrapping config
+        algaeSpoolSparkConfig.encoder.positionConversionFactor(360/Constants.Swerve.angleGearRatio);
+        algaeSpoolSparkConfig.encoder.velocityConversionFactor(Constants.AlgaeSpoolConstants.AlgaeSpool.ALGAE_SPOOL_GEAR_RATIO);
+        algaeSpoolSparkConfig.closedLoop.positionWrappingEnabled(false);
+
+        //current limiting
+        algaeSpoolSparkConfig.smartCurrentLimit(40);
     }
 }

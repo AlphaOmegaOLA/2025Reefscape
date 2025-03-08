@@ -1,9 +1,15 @@
 package frc.robot.subsystems;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.AlgaeSpoolConstants;
+import frc.robot.Constants.CoralAngleConstants;
+import frc.robot.HardwareConfigs;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.AnalogInput;
 import com.revrobotics.spark.SparkMax;
+import com.revrobotics.RelativeEncoder;
+import com.revrobotics.spark.SparkBase.PersistMode;
+import com.revrobotics.spark.SparkBase.ResetMode;
+import com.revrobotics.spark.SparkClosedLoopController;
 import com.revrobotics.spark.SparkLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -14,10 +20,19 @@ public class AlgaeSpool extends SubsystemBase
 {
     private SparkMax algaeSpoolMotor;
     private boolean algaeIsDown = false;
+    private RelativeEncoder algaeSpoolEncoder;
+    private HardwareConfigs hardwareConfigs;
+    public SparkClosedLoopController closedLoopController;
 
     public AlgaeSpool()
     {
         algaeSpoolMotor = new SparkMax(AlgaeSpoolConstants.AlgaeSpool.ALGAE_SPOOL_MOTOR_ID, MotorType.kBrushless);
+        algaeSpoolMotor = new SparkMax(CoralAngleConstants.CoralAngle.CORAL_ANGLE_MOTOR_ID, MotorType.kBrushless);
+        algaeSpoolEncoder = algaeSpoolMotor.getEncoder();
+        hardwareConfigs = new HardwareConfigs();
+        algaeSpoolEncoder.setPosition(0);
+        algaeSpoolMotor.configure(hardwareConfigs.coralAngleSparkConfig, ResetMode.kNoResetSafeParameters, PersistMode.kPersistParameters);
+        closedLoopController = algaeSpoolMotor.getClosedLoopController();
     }
 
     public void intakeDown(double speed)
@@ -33,6 +48,11 @@ public class AlgaeSpool extends SubsystemBase
             algaeSpoolMotor.set(speed * .2);
             algaeIsDown = false;
         }
+    }
+
+    public double getAngle()
+    {
+        return algaeSpoolEncoder.getPosition();
     }
 
     // Run intake at reduced speed
@@ -59,6 +79,7 @@ public class AlgaeSpool extends SubsystemBase
     public void periodic()
     {
         SmartDashboard.putBoolean("ALGAE DOWN", algaeIsDown);
+        SmartDashboard.putNumber("ALGAE SPOOL ANGLE", algaeSpoolEncoder.getPosition());
     }
     
 }
