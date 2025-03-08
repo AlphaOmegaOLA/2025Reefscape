@@ -155,13 +155,13 @@ public class RobotContainer
 
 
         /* Operator Buttons */
-        algaeSpool_out.whileTrue(new InstantCommand (() -> s_AlgaeSpool.intake(1.0)));
+        algaeSpool_out.whileTrue(new InstantCommand (() -> s_AlgaeSpool.intakeDown(1.0)));
         algaeSpool_out.onFalse(new InstantCommand(() -> s_AlgaeSpool.intakeStop()));
         algae_intake.whileTrue(new InstantCommand(() -> s_AlgaeIntakeShooter.manual(1.0)));
         algae_intake.onFalse(new InstantCommand(() -> s_AlgaeIntakeShooter.manual(0.0)));
         algae_outtake.whileTrue(new InstantCommand(() -> s_AlgaeIntakeShooter.manual(-1.0)));
         algae_outtake.onFalse(new InstantCommand(() -> s_AlgaeIntakeShooter.manual(0.0)));
-        algaeSpool_in.whileTrue(new InstantCommand(() -> s_AlgaeSpool.intake(-1.0)));
+        algaeSpool_in.whileTrue(new InstantCommand(() -> s_AlgaeSpool.intakeUp(-1.0)));
         algaeSpool_in.onFalse(new InstantCommand(() -> s_AlgaeSpool.intakeStop()));
         coral_Intake.onTrue(c_coralIntake);
         //coral_Intake.whileTrue(new InstantCommand(() -> SmartDashboard.putString("buttonPressed", "CORAL INTAKE BUTTON")));

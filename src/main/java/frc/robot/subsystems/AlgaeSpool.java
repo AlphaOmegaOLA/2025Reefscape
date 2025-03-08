@@ -3,28 +3,36 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.AlgaeSpoolConstants;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.AnalogInput;
-import edu.wpi.first.wpilibj.motorcontrol.Spark;
+import com.revrobotics.spark.SparkMax;
+import com.revrobotics.spark.SparkLowLevel.MotorType;
+
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 
 /* The Note intake rollers */
 public class AlgaeSpool extends SubsystemBase
 {
-    private Spark algaeSpoolMotor;
+    private SparkMax algaeSpoolMotor;
+    private boolean algaeIsDown = false;
 
     public AlgaeSpool()
     {
-        algaeSpoolMotor = new Spark(AlgaeSpoolConstants.AlgaeSpool.ALGAE_SPOOL_MOTOR_ID);
+        algaeSpoolMotor = new SparkMax(AlgaeSpoolConstants.AlgaeSpool.ALGAE_SPOOL_MOTOR_ID, MotorType.kBrushless);
     }
 
-    // Take a Note in
-    public void intake(double speed)
+    public void intakeDown(double speed)
     {
-        // while (speed != 0)
         algaeSpoolMotor.set(speed * .2);
-        // if (speed == 0)
-        // { algaeSpoolMotor.set(speed);}
-        // Use the while or if statement to make the motor stop when button is released
+        algaeIsDown = true;
+    }
+
+    public void intakeUp(double speed)
+    {
+        if (algaeIsDown == true)
+        {
+            algaeSpoolMotor.set(speed * .2);
+            algaeIsDown = false;
+        }
     }
 
     // Run intake at reduced speed
@@ -50,7 +58,7 @@ public class AlgaeSpool extends SubsystemBase
     // if a note is detected and print the status to the dashboard.
     public void periodic()
     {
-
+        SmartDashboard.putBoolean("ALGAE DOWN", algaeIsDown);
     }
     
 }
