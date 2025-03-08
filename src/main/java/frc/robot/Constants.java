@@ -271,7 +271,7 @@ public final class Constants
 
         public static final class AlgaeSpool
         {
-            public static final int ALGAE_SPOOL_MOTOR_ID = 0;
+            public static final int ALGAE_SPOOL_MOTOR_ID = 19;
             public static final boolean ALGAE_SPOOL_MOTOR_INVERTED = false;
             public static final IdleMode ALGAE_SPOOL_NEUTRAL_MODE = IdleMode.kBrake;
             public static final double ALGAE_SPOOL_GEAR_RATIO = 1.0;
