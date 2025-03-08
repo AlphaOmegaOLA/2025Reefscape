@@ -27,27 +27,21 @@ public class AlgaeSpool extends SubsystemBase
     public AlgaeSpool()
     {
         algaeSpoolMotor = new SparkMax(AlgaeSpoolConstants.AlgaeSpool.ALGAE_SPOOL_MOTOR_ID, MotorType.kBrushless);
-        algaeSpoolMotor = new SparkMax(CoralAngleConstants.CoralAngle.CORAL_ANGLE_MOTOR_ID, MotorType.kBrushless);
         algaeSpoolEncoder = algaeSpoolMotor.getEncoder();
         hardwareConfigs = new HardwareConfigs();
         algaeSpoolEncoder.setPosition(0);
-        algaeSpoolMotor.configure(hardwareConfigs.coralAngleSparkConfig, ResetMode.kNoResetSafeParameters, PersistMode.kPersistParameters);
+        algaeSpoolMotor.configure(hardwareConfigs.algaeSpoolSparkConfig, ResetMode.kNoResetSafeParameters, PersistMode.kPersistParameters);
         closedLoopController = algaeSpoolMotor.getClosedLoopController();
     }
 
     public void intakeDown(double speed)
     {
-        algaeSpoolMotor.set(speed * .2);
-        algaeIsDown = true;
+        algaeSpoolMotor.set(speed * .5);
     }
 
     public void intakeUp(double speed)
     {
-        if (algaeIsDown == true)
-        {
-            algaeSpoolMotor.set(speed * .2);
-            algaeIsDown = false;
-        }
+        algaeSpoolMotor.set(speed * .5);
     }
 
     public double getAngle()

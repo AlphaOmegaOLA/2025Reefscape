@@ -108,13 +108,19 @@ public class RobotContainer
         );
 
         // Manual Intake for Coral
+        /* 
         s_CoralIntakeShooter.setDefaultCommand(
             Commands.run(() -> s_CoralIntakeShooter.manual(operator.getLeftY()), s_CoralIntakeShooter)
         );
-
+        */
 
         // The defaults elevator PID angle
         s_elevator.setDefaultCommand(new PIDElevatorCommand(s_elevator));
+        /* 
+        s_elevator.setDefaultCommand(
+            Commands.run(() -> s_elevator.runElevator(operator.getLeftY() * 0.2), s_elevator)
+        );
+        */
 
         // The default coral Arm PID angle
         s_CoralIntakeArm.setDefaultCommand(new CoralIntakeArmCommand(s_CoralIntakeArm));
@@ -155,13 +161,13 @@ public class RobotContainer
 
 
         /* Operator Buttons */
-        algaeSpool_out.whileTrue(new InstantCommand (() -> s_AlgaeSpool.intakeDown(1.0)));
+        algaeSpool_out.whileTrue(new InstantCommand (() -> s_AlgaeSpool.intakeDown(-1.0)));
         algaeSpool_out.onFalse(new InstantCommand(() -> s_AlgaeSpool.intakeStop()));
-        algae_intake.whileTrue(new InstantCommand(() -> s_AlgaeIntakeShooter.manual(1.0)));
+        algae_intake.whileTrue(new InstantCommand(() -> s_AlgaeIntakeShooter.intake(1.0)));
         algae_intake.onFalse(new InstantCommand(() -> s_AlgaeIntakeShooter.manual(0.0)));
-        algae_outtake.whileTrue(new InstantCommand(() -> s_AlgaeIntakeShooter.manual(-1.0)));
+        algae_outtake.whileTrue(new InstantCommand(() -> s_AlgaeIntakeShooter.outtake(-1.0)));
         algae_outtake.onFalse(new InstantCommand(() -> s_AlgaeIntakeShooter.manual(0.0)));
-        algaeSpool_in.whileTrue(new InstantCommand(() -> s_AlgaeSpool.intakeUp(-1.0)));
+        algaeSpool_in.whileTrue(new InstantCommand(() -> s_AlgaeSpool.intakeUp(1.0)));
         algaeSpool_in.onFalse(new InstantCommand(() -> s_AlgaeSpool.intakeStop()));
         coral_Intake.onTrue(c_coralIntake);
         //coral_Intake.whileTrue(new InstantCommand(() -> SmartDashboard.putString("buttonPressed", "CORAL INTAKE BUTTON")));

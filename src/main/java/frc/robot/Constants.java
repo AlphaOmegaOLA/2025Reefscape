@@ -181,17 +181,17 @@ public final class Constants
             // Need to determine the starting offset angle of the
             // Rev Through Bore Encoder and set it here:
             public static final Rotation2d ELEVATOR_ENCODER_OFFSET = Rotation2d.fromDegrees(350+97);
-            public static final double ELEVATOR_GEAR_RATIO = 60.0;
-            public static final double ELEVATOR_START_ANGLE = 15.0; // We hope this hits the tray
-            public static final double ELEVATOR_CORAL1_ANGLE = 30.1;
-            public static final double ELEVATOR_CORAL2_ANGLE = 1.3;
+            public static final double ELEVATOR_GEAR_RATIO = 20.0;
+            public static final double ELEVATOR_START_ANGLE =  0.0; // We hope this hits the tray
+            public static final double ELEVATOR_CORAL1_ANGLE = -967.0;
+            public static final double ELEVATOR_CORAL2_ANGLE = -2689.0;
     
             // ELEVATOR PID - we will tune these values!!
             public static final int ELEVATOR_CURRENT_LIMIT = 50;
             public static final double ELEVATOR_UPDATE_OUTPUT = .02;
             public static final double ELEVATOR_MAX_VELOCITY = 1.75;
             public static final double ELEVATOR_MAX_ACCELERATION = .75;
-            public static final double ELEVATOR_P = 0.05;
+            public static final double ELEVATOR_P = 0.001;
             public static final double ELEVATOR_I = 0.0;
             public static final double ELEVATOR_D = 0.0002;
             public static final double ELEVATOR_S = 0.0;
@@ -243,17 +243,17 @@ public final class Constants
              // Rev Through Bore Encoder and set it here:
              public static final Rotation2d CORAL_ANGLE_ENCODER_OFFSET = Rotation2d.fromDegrees(350+97);
              public static final double CORAL_ANGLE_GEAR_RATIO = 20.0;
-             public static final double CORAL_ANGLE_START_ANGLE = 0.0; // We hope this hits the tray
-             public static final double CORAL_ANGLE_CORAL1_ANGLE = 30.1;
-             public static final double CORAL_ANGLE_CORAL2_ANGLE = 45.3;
-             public static final double CORAL_ANGLE_INTAKE_ANGLE = 65.0;
+             public static final double CORAL_ANGLE_START_ANGLE = -10.0; // We hope this hits the tray
+             public static final double CORAL_ANGLE_CORAL1_ANGLE = -70.0;
+             public static final double CORAL_ANGLE_CORAL2_ANGLE = -70.0;
+             public static final double CORAL_ANGLE_INTAKE_ANGLE = -200.0;
      
              // ELEVATOR PID - we will tune these values!!
              public static final int CORAL_ANGLE_CURRENT_LIMIT = 50;
              public static final double CORAL_ANGLE_UPDATE_OUTPUT = .02;
              public static final double CORAL_ANGLE_MAX_VELOCITY = 1.75;
              public static final double CORAL_ANGLE_MAX_ACCELERATION = .75;
-             public static final double CORAL_ANGLE_P = 0.05;
+             public static final double CORAL_ANGLE_P = 0.005;
              public static final double CORAL_ANGLE_I = 0.0;
              public static final double CORAL_ANGLE_D = 0.0002;
              public static final double CORAL_ANGLE_S = 1.1;
@@ -274,7 +274,7 @@ public final class Constants
             public static final int ALGAE_SPOOL_MOTOR_ID = 19;
             public static final boolean ALGAE_SPOOL_MOTOR_INVERTED = false;
             public static final IdleMode ALGAE_SPOOL_NEUTRAL_MODE = IdleMode.kBrake;
-            public static final double ALGAE_SPOOL_GEAR_RATIO = 1.0;
+            public static final double ALGAE_SPOOL_GEAR_RATIO = 64.0;
             public static final double FULL_SPEED = FULL;
             public static final double HALF_SPEED = HALF;
             public static final double QUARTER_SPEED = QUARTER;

@@ -61,7 +61,6 @@ public final class HardwareConfigs
         swerveDriveSparkConfig.closedLoopRampRate(Constants.Swerve.closedLoopRamp);
 
         /** Elevator Configuration */
-
         //Elevator motor config
         //Motor inverts and neutral modes
         elevatorSparkConfig.inverted(Constants.ElevatorConstants.Elevator.ELEVATOR_MOTOR_INVERTED);
@@ -69,7 +68,7 @@ public final class HardwareConfigs
 
         //Gear ratio and wrapping config
         elevatorSparkConfig.encoder.positionConversionFactor(360/Constants.Swerve.angleGearRatio);
-        elevatorSparkConfig.encoder.velocityConversionFactor(Constants.ElevatorConstants.Elevator.ELEVATOR_GEAR_RATIO / 60);
+        elevatorSparkConfig.encoder.velocityConversionFactor(Constants.ElevatorConstants.Elevator.ELEVATOR_GEAR_RATIO / 20);
         elevatorSparkConfig.closedLoop.positionWrappingEnabled(true);
 
         //current limiting
@@ -152,7 +151,7 @@ public final class HardwareConfigs
 
         //Gear ratio and wrapping config
         algaeSpoolSparkConfig.encoder.positionConversionFactor(360/Constants.Swerve.angleGearRatio);
-        algaeSpoolSparkConfig.encoder.velocityConversionFactor(Constants.AlgaeSpoolConstants.AlgaeSpool.ALGAE_SPOOL_GEAR_RATIO);
+        algaeSpoolSparkConfig.encoder.velocityConversionFactor(Constants.AlgaeSpoolConstants.AlgaeSpool.ALGAE_SPOOL_GEAR_RATIO / 64);
         algaeSpoolSparkConfig.closedLoop.positionWrappingEnabled(false);
 
         //current limiting
