@@ -8,7 +8,6 @@ import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.kinematics.SwerveDriveOdometry;
 import edu.wpi.first.math.kinematics.SwerveModulePosition;
 
-//import com.ctre.phoenix.sensors.PigeonIMU;
 import com.ctre.phoenix6.hardware.Pigeon2;
 import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.config.RobotConfig;
@@ -24,8 +23,7 @@ import edu.wpi.first.wpilibj.smartdashboard.Field2d;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-public class Swerve extends SubsystemBase 
-{
+public class Swerve extends SubsystemBase {
     private PoseEstimator s_PoseEstimator = new PoseEstimator();
 
     public SwerveDriveOdometry swerveOdometry;
@@ -44,7 +42,6 @@ public class Swerve extends SubsystemBase
           Constants.AutoConstants.moduleConfig,
           Constants.Swerve.trackWidth);
 
-        //gyro = new PigeonIMU(Constants.Swerve.pigeonID);
         gyro = new Pigeon2(Constants.Swerve.pigeonID);
         //gyro.configFactoryDefault();
         gyro.setYaw(0);
@@ -64,7 +61,7 @@ public class Swerve extends SubsystemBase
             this::getPose, // Robot pose supplier
             this::resetOdometry, // Method to reset odometry (will be called if your auto has a starting pose)
             this::getRobotRelativeSpeeds, // ChassisSpeeds supplier. MUST BE ROBOT RELATIVE
-            (speeds, feedforwards) -> driveRobotRelative(speeds), // Method that will drive the robot given ROBOT RELATIVE ChassisSpeeds. Also optionally outputs individual module feedforwards
+            this::driveRobotRelative, // Method that will drive the robot given ROBOT RELATIVE ChassisSpeeds. Also optionally outputs individual module feedforwards
             new PPHolonomicDriveController( // PPHolonomicController is the built in path following controller for holonomic drive trains
                     Constants.AutoConstants.translationPID, // Translation PID constants
                     Constants.AutoConstants.rotationPID // Rotation PID constants
@@ -160,8 +157,7 @@ public class Swerve extends SubsystemBase
     }
 
     public Rotation2d getGyroYaw() {
-        //return Rotation2d.fromDegrees(gyro.getYaw());
-        return gyro.getRotation2d();
+        return Rotation2d.fromDegrees(gyro.getRotation2d().getDegrees());
     }
 
     public void setHeading(Rotation2d heading){
@@ -181,7 +177,7 @@ public class Swerve extends SubsystemBase
     @Override
     public void periodic(){
         swerveOdometry.update(getGyroYaw(), getModulePositions()); 
-        s_PoseEstimator.updateSwerve(getGyroYaw(), getModulePositions());
+        //s_PoseEstimator.updateSwerve(getGyroYaw(), getModulePositions());
         field.setRobotPose(getPose());
 
         SmartDashboard.putNumber("Get Gyro", getGyroYaw().getDegrees());

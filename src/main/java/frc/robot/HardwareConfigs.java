@@ -9,56 +9,57 @@ import com.revrobotics.spark.config.ClosedLoopConfig.FeedbackSensor;
 public final class HardwareConfigs 
 {
     public CANcoderConfiguration swerveCANcoderConfig = new CANcoderConfiguration();
+    public SparkMaxConfig swerveAngleSparkConfig =  new SparkMaxConfig();
+    public SparkMaxConfig swerveDriveSparkConfig =  new SparkMaxConfig();
     public SparkMaxConfig elevatorSparkConfig =  new SparkMaxConfig();
     public SparkMaxConfig coralAngleSparkConfig= new SparkMaxConfig();
     public SparkMaxConfig coralIntakeSparkConfig = new SparkMaxConfig();
     public SparkMaxConfig algaeIntakeSparkConfig = new SparkMaxConfig();
     public SparkMaxConfig climberSparkConfig = new SparkMaxConfig();
-    public SparkMaxConfig swerveDriveSparkConfig =  new SparkMaxConfig();
     public SparkMaxConfig algaeSpoolSparkConfig = new SparkMaxConfig();
 
     public HardwareConfigs()
     {
         /** Swerve CANCoder Configuration */
-        swerveCANcoderConfig.MagnetSensor.SensorDirection = Constants.Swerve.cancoderInvert;
+       swerveCANcoderConfig.MagnetSensor.SensorDirection = Constants.Swerve.cancoderInvert;
 
-        //Swerve angle motor config
-        //Motor inverts and Neutral modes
-        swerveDriveSparkConfig.inverted(Constants.Swerve.angleMotorInvert);
-        swerveDriveSparkConfig.idleMode(Constants.Swerve.angleNeutralMode);
+       //Swerve angle motor config
+       //Motor inverts and nuetral modes
+       swerveAngleSparkConfig.inverted(Constants.Swerve.angleMotorInvert);
+       swerveAngleSparkConfig.idleMode(Constants.Swerve.angleNeutralMode);
 
-        //Gear ratio and wrapping config
-        swerveDriveSparkConfig.encoder.positionConversionFactor(360/Constants.Swerve.angleGearRatio);
-        swerveDriveSparkConfig.encoder.velocityConversionFactor(Constants.Swerve.angleGearRatio / 60);
-        swerveDriveSparkConfig.closedLoop.positionWrappingEnabled(true);
+       //Gear ratio and wrapping config
+       swerveAngleSparkConfig.encoder.positionConversionFactor(360/Constants.Swerve.angleGearRatio);
+       swerveAngleSparkConfig.encoder.velocityConversionFactor(Constants.Swerve.angleGearRatio / 60);
+       swerveAngleSparkConfig.closedLoop.positionWrappingEnabled(true);
 
-        //current limiting
-        swerveDriveSparkConfig.smartCurrentLimit(40);
+       //current limiting
+       swerveAngleSparkConfig.smartCurrentLimit(40);
 
-        //PID config
-        swerveDriveSparkConfig.closedLoop.p(Constants.Swerve.driveKP);
-        swerveDriveSparkConfig.closedLoop.i(Constants.Swerve.driveKI);
-        swerveDriveSparkConfig.closedLoop.d(Constants.Swerve.driveKD);
+       //PID config
+       swerveDriveSparkConfig.closedLoop.p(Constants.Swerve.driveKP);
+       swerveDriveSparkConfig.closedLoop.i(Constants.Swerve.driveKI);
+       swerveDriveSparkConfig.closedLoop.d(Constants.Swerve.driveKD);
 
-        //Swerve drive motor config
-        //Motor inverts and Neutral modes
-        swerveDriveSparkConfig.inverted(Constants.Swerve.driveMotorInvert);
-        swerveDriveSparkConfig.idleMode(Constants.Swerve.driveNeutralMode);
+       //Swerve drive motor config
+       //Motor inverts and nuetral modes
+       swerveDriveSparkConfig.inverted(Constants.Swerve.driveMotorInvert);
+       swerveDriveSparkConfig.idleMode(Constants.Swerve.driveNeutralMode);
 
-        //Gear ratio and wrapping config
-        swerveDriveSparkConfig.encoder.positionConversionFactor(Constants.Swerve.driveGearRatio);
-        swerveDriveSparkConfig.closedLoop.positionWrappingEnabled(true);
+       //Gear ratio and wrapping config
+       swerveDriveSparkConfig.encoder.positionConversionFactor(Constants.Swerve.wheelCircumference / Constants.Swerve.driveGearRatio);
+       swerveDriveSparkConfig.closedLoop.positionWrappingEnabled(true);
 
-        //current limiting
-        swerveDriveSparkConfig.smartCurrentLimit(40);
+       //current limiting
+       swerveDriveSparkConfig.smartCurrentLimit(40);
 
-        //PID config
-        swerveDriveSparkConfig.closedLoop.p(Constants.Swerve.driveKP);
-        swerveDriveSparkConfig.closedLoop.i(Constants.Swerve.driveKI);
-        swerveDriveSparkConfig.closedLoop.d(Constants.Swerve.driveKD);
+       //PID config
+       swerveDriveSparkConfig.closedLoop.p(Constants.Swerve.driveKP);
+       swerveDriveSparkConfig.closedLoop.i(Constants.Swerve.driveKI);
+       swerveDriveSparkConfig.closedLoop.d(Constants.Swerve.driveKD);
 
-        swerveDriveSparkConfig.openLoopRampRate(Constants.Swerve.openLoopRamp);
-        swerveDriveSparkConfig.closedLoopRampRate(Constants.Swerve.closedLoopRamp);
+       swerveAngleSparkConfig.openLoopRampRate(Constants.Swerve.openLoopRamp);
+       swerveAngleSparkConfig.closedLoopRampRate(Constants.Swerve.closedLoopRamp);
 
         /** Elevator Configuration */
         //Elevator motor config

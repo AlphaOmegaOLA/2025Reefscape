@@ -21,8 +21,7 @@ import com.revrobotics.spark.SparkMax;
 /**
  * a Swerve Modules using REV Robotics motor controllers and CTRE CANcoder absolute encoders.
  */
-public class SwerveMod
-{
+public class SwerveMod{
     private HardwareConfigs hardwareConfigs;
 
     public int moduleNumber;
@@ -47,7 +46,7 @@ public class SwerveMod
 
         /* Angle Motor Config */
         mAngleMotor = new SparkMax(moduleConstants.angleMotorID, MotorType.kBrushless);
-        mAngleMotor.configure(hardwareConfigs.swerveDriveSparkConfig, ResetMode.kNoResetSafeParameters, PersistMode.kPersistParameters);
+        mAngleMotor.configure(hardwareConfigs.swerveAngleSparkConfig, ResetMode.kNoResetSafeParameters, PersistMode.kPersistParameters);
 
         /* Drive Motor Config */
         mDriveMotor = new SparkMax(moduleConstants.driveMotorID,  MotorType.kBrushless);
@@ -55,6 +54,7 @@ public class SwerveMod
         configEncoders();
 
     }
+
 
     private void configEncoders()
     {     
@@ -141,4 +141,5 @@ public class SwerveMod
             getAngle()
         );
     }
+
 }
