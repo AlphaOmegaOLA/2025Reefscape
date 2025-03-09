@@ -36,7 +36,7 @@ public class AlgaeSpool extends SubsystemBase
 
     public void intakeDown(double speed)
     {
-        algaeSpoolMotor.set(speed * .5);
+        algaeSpoolMotor.set(speed * .8);
     }
 
     public void intakeUp(double speed)

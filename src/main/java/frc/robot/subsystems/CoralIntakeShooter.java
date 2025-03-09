@@ -46,4 +46,14 @@ public class CoralIntakeShooter extends SubsystemBase
   {
       this.setMotor(speed * 0.25);       
   }
+
+  public void intake(double speed)
+  {
+    this.setMotor(speed * .2);
+  }
+
+  public void outtake(double speed)
+  {
+    this.setMotor(speed * .25);
+  }
 }

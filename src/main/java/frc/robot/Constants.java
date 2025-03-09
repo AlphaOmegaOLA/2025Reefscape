@@ -243,17 +243,17 @@ public final class Constants
              // Rev Through Bore Encoder and set it here:
              public static final Rotation2d CORAL_ANGLE_ENCODER_OFFSET = Rotation2d.fromDegrees(350+97);
              public static final double CORAL_ANGLE_GEAR_RATIO = 20.0;
-             public static final double CORAL_ANGLE_START_ANGLE = -20.0; // We hope this hits the tray
-             public static final double CORAL_ANGLE_CORAL1_ANGLE = -50.0;
-             public static final double CORAL_ANGLE_CORAL2_ANGLE = -50.0;
-             public static final double CORAL_ANGLE_INTAKE_ANGLE = -200.0;
+             public static final double CORAL_ANGLE_START_ANGLE = -30.0; // We hope this hits the tray
+             public static final double CORAL_ANGLE_CORAL1_ANGLE = -35.0;
+             public static final double CORAL_ANGLE_CORAL2_ANGLE = -35.0;
+             public static final double CORAL_ANGLE_INTAKE_ANGLE = -180.0;
      
              // ELEVATOR PID - we will tune these values!!
              public static final int CORAL_ANGLE_CURRENT_LIMIT = 50;
              public static final double CORAL_ANGLE_UPDATE_OUTPUT = .02;
              public static final double CORAL_ANGLE_MAX_VELOCITY = 1.75;
              public static final double CORAL_ANGLE_MAX_ACCELERATION = .75;
-             public static final double CORAL_ANGLE_P = 0.007;
+             public static final double CORAL_ANGLE_P = 0.005;
              public static final double CORAL_ANGLE_I = 0.0;
              public static final double CORAL_ANGLE_D = 0.005;
              public static final double CORAL_ANGLE_S = 1.1;
