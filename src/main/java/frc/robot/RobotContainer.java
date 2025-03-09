@@ -108,19 +108,19 @@ public class RobotContainer
         );
 
         // Manual Intake for Coral
-        /* 
-        s_CoralIntakeShooter.setDefaultCommand(
-            Commands.run(() -> s_CoralIntakeShooter.manual(operator.getLeftY()), s_CoralIntakeShooter)
-        );
-        */
+         
+        //s_CoralIntakeShooter.setDefaultCommand(
+        //   Commands.run(() -> s_CoralIntakeShooter.manual(operator.getLeftY()), s_CoralIntakeShooter)
+        //);
+        
 
         // The defaults elevator PID angle
-        s_elevator.setDefaultCommand(new PIDElevatorCommand(s_elevator));
-        /* 
+        //s_elevator.setDefaultCommand(new PIDElevatorCommand(s_elevator));
+        
         s_elevator.setDefaultCommand(
-            Commands.run(() -> s_elevator.runElevator(operator.getLeftY() * 0.2), s_elevator)
+            Commands.run(() -> s_elevator.manual(operator.getLeftY() * 0.2), s_elevator)
         );
-        */
+        
 
         // The default coral Arm PID angle
         s_CoralIntakeArm.setDefaultCommand(new CoralIntakeArmCommand(s_CoralIntakeArm));

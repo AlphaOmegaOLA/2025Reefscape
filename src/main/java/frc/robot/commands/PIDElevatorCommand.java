@@ -75,7 +75,7 @@ public class PIDElevatorCommand extends Command
 
         //motorSpeed = elevatorController.calculate(PIDElevator.getAngle(), PIDElevator.setpoint);
         //PIDElevator.runElevator(motorSpeed);
-        PIDElevator.setAngle(currentElevatorTarget);
+        PIDElevator.runToSetpoint(currentElevatorTarget);
         SmartDashboard.putNumber("ELEVATOR SET POINT", currentElevatorTarget);
     }
 
