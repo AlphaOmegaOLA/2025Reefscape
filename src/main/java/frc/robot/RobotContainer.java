@@ -11,8 +11,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
-import edu.wpi.first.cameraserver.CameraServer;
-import edu.wpi.first.cscore.UsbCamera;
+//import edu.wpi.first.cameraserver.CameraServer;
+//import edu.wpi.first.cscore.UsbCamera;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
@@ -43,12 +43,13 @@ public class RobotContainer
 	private final int rotationAxis = 4;
 
     // Microsoft Life cam on arm
-    private final UsbCamera usbcamera;
+    //private final UsbCamera usbcamera;
 
     /* Driver Buttons */
     private final JoystickButton zeroGyro = new JoystickButton(driver, ControllerMap.LOGO_RIGHT);
     private final POVButton climber_up = new POVButton(driver, 0);
     private final POVButton climber_down = new POVButton(driver, 180);
+    private final JoystickButton dampen = new JoystickButton(driver, ControllerMap.RB);
 
     /* Operator Buttons */
     // X = Algae Spool Out
@@ -102,7 +103,7 @@ public class RobotContainer
                 () -> -driver.getRawAxis(strafeAxis), 
                 () -> -driver.getRawAxis(rotationAxis), 
                 () -> false,
-                () -> false,
+                () -> dampen.getAsBoolean(),
                 () -> 0 // Dynamic heading placeholder
             )
         );
@@ -118,7 +119,7 @@ public class RobotContainer
         s_elevator.setDefaultCommand(new PIDElevatorCommand(s_elevator));
         
         //s_elevator.setDefaultCommand(
-        //    Commands.run(() -> s_elevator.manual(operator.getLeftY() * 0.2), s_elevator)
+         //   Commands.run(() -> s_elevator.manual(operator.getLeftY() * 0.2), s_elevator)
         //);
         
 
@@ -126,7 +127,7 @@ public class RobotContainer
         s_CoralIntakeArm.setDefaultCommand(new CoralIntakeArmCommand(s_CoralIntakeArm));
 
          // Camera
-         usbcamera = CameraServer.startAutomaticCapture();
+         //usbcamera = CameraServer.startAutomaticCapture();
 
         // Configure the button bindings
         configureButtonBindings();
@@ -158,7 +159,6 @@ public class RobotContainer
         climber_up.onFalse(new InstantCommand (() -> s_Climber.manual(0.0)));
         climber_down.whileTrue(new InstantCommand(() -> s_Climber.manual(-1.0)));
         climber_down.onFalse(new InstantCommand (() -> s_Climber.manual(0.0)));
-
 
         /* Operator Buttons */
         algaeSpool_out.whileTrue(new InstantCommand (() -> s_AlgaeSpool.intakeDown(-1.0)));
