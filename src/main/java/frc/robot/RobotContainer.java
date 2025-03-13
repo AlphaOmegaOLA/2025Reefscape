@@ -42,6 +42,8 @@ public class RobotContainer
 	private final int strafeAxis = 0;
 	private final int rotationAxis = 4;
 
+    private double outtakeSpeed = 0.25;
+
     // Microsoft Life cam on arm
     //private final UsbCamera usbcamera;
 
@@ -50,6 +52,7 @@ public class RobotContainer
     private final POVButton climber_up = new POVButton(driver, 0);
     private final POVButton climber_down = new POVButton(driver, 180);
     private final JoystickButton dampen = new JoystickButton(driver, ControllerMap.RB);
+    private final JoystickButton algae_off = new JoystickButton(driver, ControllerMap.LB);
 
     /* Operator Buttons */
     // X = Algae Spool Out
@@ -111,7 +114,7 @@ public class RobotContainer
         // Manual Intake for Coral
          
         s_CoralIntakeShooter.setDefaultCommand(
-           Commands.run(() -> s_CoralIntakeShooter.manual(operator.getLeftY()), s_CoralIntakeShooter)
+           Commands.run(() -> s_CoralIntakeShooter.manual(operator.getLeftY() * outtakeSpeed), s_CoralIntakeShooter)
         );
         
 
@@ -154,6 +157,8 @@ public class RobotContainer
     {
         /* Driver Buttons */
         zeroGyro.onTrue(new InstantCommand(() -> s_Swerve.zeroHeading()));
+        algae_off.whileTrue(new InstantCommand(() -> outtakeSpeed = 1.0));
+        algae_off.onFalse(new InstantCommand(() -> outtakeSpeed = 0.25));
 
         climber_up.whileTrue(new InstantCommand(() -> s_Climber.manual(1.0)));
         climber_up.onFalse(new InstantCommand (() -> s_Climber.manual(0.0)));

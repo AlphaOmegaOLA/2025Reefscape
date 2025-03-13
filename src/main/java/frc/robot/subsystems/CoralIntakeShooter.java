@@ -44,7 +44,7 @@ public class CoralIntakeShooter extends SubsystemBase
 
   public void manual(double speed)
   {
-      this.setMotor(speed * 0.25);       
+      this.setMotor(speed);       
   }
 
   public void intake(double speed)
@@ -55,5 +55,10 @@ public class CoralIntakeShooter extends SubsystemBase
   public void outtake(double speed)
   {
     this.setMotor(speed * .25);
+  }
+
+  public void algaeOuttake(double speed)
+  {
+    this.setMotor(speed * .8);
   }
 }
