@@ -9,7 +9,7 @@ import frc.robot.Constants;
 
 public class AutoDriveCommand extends Command
 {
-    /*private final Swerve swerve;
+    private final Swerve swerve;
     private final Translation2d direction;
     private final HardwareConfigs hardwareConfigs;
     private final double speed;
@@ -74,5 +74,5 @@ public class AutoDriveCommand extends Command
     {
         return timer.get() >= time;
     }
-    */
+    
 }

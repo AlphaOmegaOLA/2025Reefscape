@@ -33,6 +33,10 @@ import frc.robot.subsystems.Elevator.*;
  */
 public class RobotContainer 
 {
+
+    /* Autonomous menu */
+    private final SendableChooser<Command> autoChooser;
+
     /* Controllers */
     private final XboxController driver = new XboxController(0);
     private final XboxController operator = new XboxController(1);
@@ -42,7 +46,8 @@ public class RobotContainer
 	private final int strafeAxis = 0;
 	private final int rotationAxis = 4;
 
-    private double outtakeSpeed = 0.25;
+    private double outtakeSpeed = 0.35;
+
 
     // Microsoft Life cam on arm
     //private final UsbCamera usbcamera;
@@ -84,7 +89,8 @@ public class RobotContainer
     private final AlgaeIntakeShooter s_AlgaeIntakeShooter = new AlgaeIntakeShooter();
     private final CoralIntakeArm s_CoralIntakeArm = new CoralIntakeArm();
     private final CoralIntakeShooter s_CoralIntakeShooter = new CoralIntakeShooter();
-    private final RobotSkills coral = new RobotSkills(s_CoralIntakeArm, s_elevator);
+    private final RobotSkills coral = new RobotSkills(s_CoralIntakeArm, s_elevator, s_CoralIntakeShooter, s_Swerve);
+    private final RobotSkills autos = new RobotSkills(s_CoralIntakeArm, s_elevator, s_CoralIntakeShooter, s_Swerve);
     //private final Vision s_Vision = new Vision(s_PoseEstimator);
 
     /* Commands */
@@ -99,6 +105,13 @@ public class RobotContainer
     /** The container for the robot. Contains subsystems, OI devices, and commands. */
     public RobotContainer() 
     {
+
+        autoChooser = new SendableChooser<>();
+        SmartDashboard.putData("Auto Mode", autoChooser);
+        autoChooser.setDefaultOption("1 Roll and Shoot", autos.rollShortAndShoot());
+        //autoChooser.addOption("4 Note Auto", autos.fourNoteAuto());
+        //autoChooser.addOption("4 Note Long Auto", autos.fourNoteLongAuto());
+
         s_Swerve.setDefaultCommand(
             new SwerveCommand(
                 s_Swerve, 
@@ -158,7 +171,7 @@ public class RobotContainer
         /* Driver Buttons */
         zeroGyro.onTrue(new InstantCommand(() -> s_Swerve.zeroHeading()));
         algae_off.whileTrue(new InstantCommand(() -> outtakeSpeed = 1.0));
-        algae_off.onFalse(new InstantCommand(() -> outtakeSpeed = 0.25));
+        algae_off.onFalse(new InstantCommand(() -> outtakeSpeed = 0.35));
 
         climber_up.whileTrue(new InstantCommand(() -> s_Climber.manual(1.0)));
         climber_up.onFalse(new InstantCommand (() -> s_Climber.manual(0.0)));
@@ -189,9 +202,9 @@ public class RobotContainer
      *
      * @return the command to run in autonomous
      */
-    /*public Command getAutonomousCommand() 
+    public Command getAutonomousCommand() 
     {
         // An ExampleCommand will run in autonomous
         return autoChooser.getSelected();
-    }*/
+    }
 }
