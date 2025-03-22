@@ -38,7 +38,7 @@ public class CoralIntakeShooter extends SubsystemBase
 
   public Command fast()
   {
-      return this.startEnd(() -> this.setMotor(-CoralIntakeConstants.CoralIntake.QUARTER_SPEED),
+      return this.startEnd(() -> this.setMotor(-CoralIntakeConstants.CoralIntake.HALF_SPEED),
           () -> this.setMotor(0));
   }
 

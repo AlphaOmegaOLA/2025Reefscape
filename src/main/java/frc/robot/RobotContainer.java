@@ -3,7 +3,7 @@ package frc.robot;
 import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.auto.NamedCommands;
 
-import edu.wpi.first.cscore.UsbCamera;
+//import edu.wpi.first.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
@@ -135,7 +135,7 @@ public class RobotContainer
         s_elevator.setDefaultCommand(new PIDElevatorCommand(s_elevator));
         
         //s_elevator.setDefaultCommand(
-         //   Commands.run(() -> s_elevator.manual(operator.getLeftY() * 0.2), s_elevator)
+          //  Commands.run(() -> s_elevator.manual(operator.getLeftY() * 0.2), s_elevator)
         //);
         
 
@@ -144,6 +144,7 @@ public class RobotContainer
 
          // Camera
          //usbcamera = CameraServer.startAutomaticCapture();
+        // usbcamera.setResolution(640, 480);
 
         // Configure the button bindings
         configureButtonBindings();
