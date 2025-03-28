@@ -58,9 +58,9 @@ public class Vision extends SubsystemBase
             s_PoseEstimator.updateVision(LLpose, LLlatency);         
         }*/
         if(target){
-            Pose2d pose = new Pose2d((x), (y), Rotation2d.fromDegrees(0.0));
-            double latency = (limelight.getLatency());
-            s_PoseEstimator.updateVision(pose, latency);}         
+            Pose2d LLpose = new Pose2d((x), (y), Rotation2d.fromDegrees(0.0));
+            double LLlatency = (limelight.getLatency());
+            s_PoseEstimator.updateVision(LLpose, LLlatency);}         
       /*}else if(target){
             Pose2d pose = new Pose2d(x, y, Rotation2d.fromDegrees(0.0));
             double latency = limelight.getLatency();
