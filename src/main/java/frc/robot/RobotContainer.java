@@ -20,6 +20,8 @@ import edu.wpi.first.wpilibj2.command.button.POVButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.ControllerMap;
 import frc.robot.States;
+import frc.robot.commands.LimelightAprilTagAlignCommand;
+import frc.robot.commands.LimelightAutoAlignCommand;
 
 import frc.robot.commands.*;
 import frc.robot.subsystems.*;
@@ -57,7 +59,7 @@ public class RobotContainer
     private final POVButton climber_up = new POVButton(driver, 0);
     private final POVButton climber_down = new POVButton(driver, 180);
     private final JoystickButton dampen = new JoystickButton(driver, ControllerMap.RB);
-    private final JoystickButton algae_off = new JoystickButton(driver, ControllerMap.LB);
+    private final JoystickButton alignButton = new JoystickButton(driver, ControllerMap.LB);
 
     /* Operator Buttons */
     // X = Algae Spool Out
@@ -91,7 +93,10 @@ public class RobotContainer
     private final CoralIntakeShooter s_CoralIntakeShooter = new CoralIntakeShooter();
     private final RobotSkills coral = new RobotSkills(s_CoralIntakeArm, s_elevator, s_CoralIntakeShooter, s_Swerve);
     private final RobotSkills autos = new RobotSkills(s_CoralIntakeArm, s_elevator, s_CoralIntakeShooter, s_Swerve);
-    //private final Vision s_Vision = new Vision(s_PoseEstimator);
+    private final Vision s_Vision = new Vision(s_PoseEstimator);
+    private final Command teleopAutoAlign = new LimelightAprilTagAlignCommand(s_Swerve, s_Vision);
+    private final Command autoAlign = new LimelightAutoAlignCommand(s_Swerve, s_Vision);
+    
 
     /* Commands */
     private final Command c_coralIntake = coral.coralIntake();
@@ -109,7 +114,7 @@ public class RobotContainer
         autoChooser = new SendableChooser<>();
         SmartDashboard.putData("Auto Mode", autoChooser);
         autoChooser.setDefaultOption("1 Roll and Shoot", autos.rollShortAndShoot());
-        //autoChooser.addOption("4 Note Auto", autos.fourNoteAuto());
+        autoChooser.addOption("Limelight auto", autoAlign);
         //autoChooser.addOption("4 Note Long Auto", autos.fourNoteLongAuto());
 
         s_Swerve.setDefaultCommand(
@@ -171,8 +176,8 @@ public class RobotContainer
     {
         /* Driver Buttons */
         zeroGyro.onTrue(new InstantCommand(() -> s_Swerve.zeroHeading()));
-        algae_off.whileTrue(new InstantCommand(() -> outtakeSpeed = 1.0));
-        algae_off.onFalse(new InstantCommand(() -> outtakeSpeed = 0.35));
+        //algae_off.whileTrue(new InstantCommand(() -> outtakeSpeed = 1.0));
+        //algae_off.onFalse(new InstantCommand(() -> outtakeSpeed = 0.35));
 
         climber_up.whileTrue(new InstantCommand(() -> s_Climber.manual(1.0)));
         climber_up.onFalse(new InstantCommand (() -> s_Climber.manual(0.0)));
@@ -196,6 +201,7 @@ public class RobotContainer
         //coral_coral1.whileTrue(new InstantCommand(() -> SmartDashboard.putString("buttonPressed", "CORAL CORAL1 BUTTON")));
         coral_coral2.onTrue(c_coral2);
         //coral_coral2.whileTrue(new InstantCommand(() -> SmartDashboard.putString("buttonPressed", "CORAL C0RAL2 BUTTON")));
+        alignButton.whileTrue(teleopAutoAlign);
     }
 
     /**
