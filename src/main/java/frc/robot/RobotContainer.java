@@ -1,5 +1,6 @@
 package frc.robot;
 
+import com.fasterxml.jackson.databind.util.Named;
 import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.auto.NamedCommands;
 
@@ -110,6 +111,10 @@ public class RobotContainer
     /** The container for the robot. Contains subsystems, OI devices, and commands. */
     public RobotContainer() 
     {
+
+        NamedCommands.registerCommand("coral1", autos.coral1());
+        NamedCommands.registerCommand("coral2", autos.coral2());
+        NamedCommands.registerCommand("shootFast", autos.shootFast());
 
         autoChooser = new SendableChooser<>();
         SmartDashboard.putData("Auto Mode", autoChooser);

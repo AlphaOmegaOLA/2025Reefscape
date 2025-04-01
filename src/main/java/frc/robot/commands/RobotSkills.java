@@ -73,6 +73,11 @@ public class RobotSkills
         return new InstantCommand(() -> States.coralIntakeArmState = States.CoralIntakeArmStates.coral2);
     }
 
+    public Command shootFast()
+    {
+        return new InstantCommand(() -> this.coralShooter.fast());
+    }
+
     public Command rollShortAndShoot()
     {
         return new SequentialCommandGroup
