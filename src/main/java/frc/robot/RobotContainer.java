@@ -106,7 +106,7 @@ public class RobotContainer
     private final Command c_coral2 = coral.coral2();
 
     /* AutoChooser */
-   // private final SendableChooser<Command> autoChooser;
+    //private final SendableChooser<Command> autoChooser;
 
     /** The container for the robot. Contains subsystems, OI devices, and commands. */
     public RobotContainer() 
@@ -116,11 +116,13 @@ public class RobotContainer
         NamedCommands.registerCommand("coral2", autos.coral2());
         NamedCommands.registerCommand("shootFast", autos.shootFast());
 
-        autoChooser = new SendableChooser<>();
-        SmartDashboard.putData("Auto Mode", autoChooser);
-        autoChooser.setDefaultOption("1 Roll and Shoot", autos.rollShortAndShoot());
-        autoChooser.addOption("Limelight auto", autoAlign);
+        //autoChooser = new SendableChooser<>();
+        //SmartDashboard.putData("Auto Mode", autoChooser);
+        //autoChooser.setDefaultOption("1 Roll and Shoot", autos.rollShortAndShoot());
+        //autoChooser.addOption("Limelight auto", autoAlign);
         //autoChooser.addOption("4 Note Long Auto", autos.fourNoteLongAuto());
+        autoChooser = AutoBuilder.buildAutoChooser();
+        SmartDashboard.putData("Auto Chooser", autoChooser);
 
         s_Swerve.setDefaultCommand(
             new SwerveCommand(
@@ -217,6 +219,7 @@ public class RobotContainer
     public Command getAutonomousCommand() 
     {
         // An ExampleCommand will run in autonomous
+        //return autoChooser.getSelected();
         return autoChooser.getSelected();
     }
 }
