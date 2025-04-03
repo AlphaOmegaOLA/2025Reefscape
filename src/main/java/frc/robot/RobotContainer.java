@@ -112,17 +112,17 @@ public class RobotContainer
     public RobotContainer() 
     {
 
-        NamedCommands.registerCommand("coral1", autos.coral1());
-        NamedCommands.registerCommand("coral2", autos.coral2());
-        NamedCommands.registerCommand("shootFast", autos.shootFast());
+        //NamedCommands.registerCommand("coral1", autos.coral1());
+        //NamedCommands.registerCommand("coral2", autos.coral2());
+        //NamedCommands.registerCommand("shootFast", autos.shootFast());
 
-        //autoChooser = new SendableChooser<>();
-        //SmartDashboard.putData("Auto Mode", autoChooser);
-        //autoChooser.setDefaultOption("1 Roll and Shoot", autos.rollShortAndShoot());
-        //autoChooser.addOption("Limelight auto", autoAlign);
+        autoChooser = new SendableChooser<>();
+        SmartDashboard.putData("Auto Mode", autoChooser);
+        autoChooser.setDefaultOption("1 Roll and Shoot", autos.rollShortAndShoot());
+        autoChooser.addOption("Limelight auto", autoAlign);
         //autoChooser.addOption("4 Note Long Auto", autos.fourNoteLongAuto());
-        autoChooser = AutoBuilder.buildAutoChooser();
-        SmartDashboard.putData("Auto Chooser", autoChooser);
+        //autoChooser = AutoBuilder.buildAutoChooser();
+        //SmartDashboard.putData("Auto Chooser", autoChooser);
 
         s_Swerve.setDefaultCommand(
             new SwerveCommand(
@@ -219,7 +219,7 @@ public class RobotContainer
     public Command getAutonomousCommand() 
     {
         // An ExampleCommand will run in autonomous
-        //return autoChooser.getSelected();
         return autoChooser.getSelected();
+        //return autoChooser.getSelected();
     }
 }

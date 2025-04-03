@@ -70,7 +70,10 @@ public class RobotSkills
 
     public Command autoTroughCoral()
     {
-        return new InstantCommand(() -> States.coralIntakeArmState = States.CoralIntakeArmStates.coral2);
+        return new ParallelCommandGroup(
+            Commands.runOnce(() ->  States.coralIntakeArmState = States.CoralIntakeArmStates.coral2),
+            Commands.runOnce(() ->  States.elevatorState = States.ElevatorStates.coral2)
+        );    
     }
 
     public Command shootFast()
